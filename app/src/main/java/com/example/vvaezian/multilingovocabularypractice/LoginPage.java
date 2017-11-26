@@ -17,10 +17,15 @@ import org.json.JSONObject;
 
 public class LoginPage extends AppCompatActivity {
 
+    //DatabaseHelper myDB;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        //myDB = new DatabaseHelper(this);
 
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
