@@ -42,7 +42,7 @@ public class EditTablePage extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         boolean isInserted = myDB.insertData(etEN.getText().toString(),
-                                        etFR.getText().toString());
+                                                             etFR.getText().toString());
                         if (isInserted)
                             Toast.makeText(EditTablePage.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
                         else
@@ -65,7 +65,7 @@ public class EditTablePage extends AppCompatActivity {
                         }
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()) {
-                            buffer.append("IDoracle : " + res.getString(0) + "\n");
+                            buffer.append("ID : " + res.getString(0) + "\n");
                             buffer.append("EN: " + res.getString(1) + "\n");
                             buffer.append("FR: " + res.getString(2) + "\n\n");
                         }

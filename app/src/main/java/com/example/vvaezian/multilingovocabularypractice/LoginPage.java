@@ -50,7 +50,7 @@ public class LoginPage extends AppCompatActivity {
                                 String username = jsonResponse.getString("username");
 
                                 Intent intent = new Intent(LoginPage.this, UserArea.class);
-                                intent.putExtra("username", username);
+                                intent.putExtra("username", username);  // we use this extra info in the 'UserArea' page
 
                                 LoginPage.this.startActivity(intent);
 
