@@ -40,6 +40,7 @@ public class LoginPage extends AppCompatActivity {
                 Intent intent = new Intent(LoginPage.this, UserArea.class); // go to the UserArea page without loging in
                 intent.putExtra("username", LoggedInUser);  // we use this extra info in the 'UserArea' page
                 LoginPage.this.startActivity(intent);
+                finish();  // prevent getting back to this page by pressing 'back' button
             }
         }
 
@@ -71,6 +72,7 @@ public class LoginPage extends AppCompatActivity {
                                 Intent intent = new Intent(LoginPage.this, UserArea.class);
                                 intent.putExtra("username", username);  // we use this extra info in the 'UserArea' page
                                 LoginPage.this.startActivity(intent);
+                                finish();  // prevent getting back to this page by pressing 'back' button
 
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);

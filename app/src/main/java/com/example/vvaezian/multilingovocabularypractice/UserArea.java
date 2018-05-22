@@ -40,5 +40,6 @@ public class UserArea extends AppCompatActivity {
 
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
+        finish();  // to prevent getting back to UserArea page by pressing 'back' button
     }
 }
