@@ -35,10 +35,8 @@ public class UserArea extends AppCompatActivity {
     public void BtnLogOutClicked(View view) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor prefEditor = sp.edit();
-        prefEditor.putBoolean("loggedIn", false);
+        prefEditor.putBoolean("loggedIn", false);  // writing in sharedPreference that no one is logged in
         prefEditor.apply();
-        //sp.edit().putBoolean("loggedIn",false).apply();  // writing in sharedPreference that no one is logged in
-        //sp.edit().putString("user", "").apply();
 
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
