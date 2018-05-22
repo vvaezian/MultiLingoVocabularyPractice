@@ -1,7 +1,9 @@
 package com.example.vvaezian.multilingovocabularypractice;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,20 +19,29 @@ import org.json.JSONObject;
 
 public class LoginPage extends AppCompatActivity {
 
-    //DatabaseHelper myDB;
-
+    // used to save whether the user is logged in
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        //myDB = new DatabaseHelper(this);
-
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final Button btnRegister = (Button) findViewById(R.id.BtnReg);
         final Button btnLogin = (Button) findViewById(R.id.BtnLogin);
+
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        // sp = getSharedPreferences("login", MODE_PRIVATE);
+
+        if(sp.getBoolean("loggedIn",false)){  //checking if anyone is logged in
+            String LoggedInUser = sp.getString("user",""); // retrieve the username of the logged in person
+            if (!LoggedInUser.equals("")) {  // if the username was retrieved correctly
+                Intent intent = new Intent(LoginPage.this, UserArea.class); // go to the UserArea page without loging in
+                intent.putExtra("username", LoggedInUser);  // we use this extra info in the 'UserArea' page
+                LoginPage.this.startActivity(intent);
+            }
+        }
 
         btnLogin.setOnClickListener(new View.OnClickListener(){
 
@@ -49,9 +60,16 @@ public class LoginPage extends AppCompatActivity {
                             if (success){
                                 String username = jsonResponse.getString("username");
 
+                                SharedPreferences.Editor prefEditor = sp.edit();
+                                prefEditor.putBoolean("loggedIn", true);  // writing in sharedPreference that user is logged in
+                                prefEditor.putString("user", username);
+                                prefEditor.apply();
+
+                                //sp.edit().putBoolean("loggedIn",true).apply();  // writing in sharedPreference that user is logged in
+                                //sp.edit().putString("user", username).apply();
+
                                 Intent intent = new Intent(LoginPage.this, UserArea.class);
                                 intent.putExtra("username", username);  // we use this extra info in the 'UserArea' page
-
                                 LoginPage.this.startActivity(intent);
 
                             } else {

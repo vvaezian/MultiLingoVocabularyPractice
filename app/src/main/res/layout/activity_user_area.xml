@@ -28,4 +28,14 @@
         android:text="Edit"
         android:onClick="BtnEditClicked"/>
 
+    <Button
+        android:id="@+id/BtnLogOut"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="Log Out"
+        android:onClick="BtnLogOutClicked"
+        android:layout_alignParentRight="true" />
+
 </RelativeLayout>
