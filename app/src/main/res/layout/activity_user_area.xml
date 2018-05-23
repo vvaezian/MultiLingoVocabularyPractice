@@ -11,31 +11,37 @@
         android:id="@+id/tvGreet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Greetings" />
+        android:layout_alignBottom="@+id/btnGoEditPage"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16dp"
+        android:text="Greetings"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="16dp" />
 
     <Button
         android:id="@+id/btnGoEditPage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="27dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_toLeftOf="@+id/tvGreet"
-        android:layout_toStartOf="@+id/tvGreet"
-        android:text="Edit"
-        android:onClick="BtnEditClicked"/>
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/BtnLogOut"
+        android:onClick="BtnEditClicked"
+        android:text="Add Words"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:layout_marginRight="0dp"
+        android:layout_toLeftOf="@+id/BtnLogOut" />
 
     <Button
         android:id="@+id/BtnLogOut"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="Log Out"
         android:onClick="BtnLogOutClicked"
-        android:layout_alignParentRight="true" />
+        android:text="Log Out"
+        android:textAllCaps="false"
+        android:textSize="12sp" />
 
 </RelativeLayout>
