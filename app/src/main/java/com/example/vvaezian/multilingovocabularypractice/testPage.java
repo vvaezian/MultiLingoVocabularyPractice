@@ -14,7 +14,7 @@ public class testPage extends AppCompatActivity {
         setContentView(R.layout.test);
 
         TableLayout tl = (TableLayout) findViewById(R.id.LanguageFlagsArea);
-        String[] langs = new String[]{"French", "German", "Spanish"};  // this will be fetched from the duolingo-api
+        String[] langs = new String[]{"French", "German", "Spanish"};  // This will be fetched from the duolingo-api
         TableRow[] rows = new TableRow[langs.length];
         Button[] button = new Button[langs.length];
 
