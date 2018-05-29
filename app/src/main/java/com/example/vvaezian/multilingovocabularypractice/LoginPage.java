@@ -62,12 +62,9 @@ public class LoginPage extends AppCompatActivity {
                                 String username = jsonResponse.getString("username");
 
                                 SharedPreferences.Editor prefEditor = sp.edit();
-                                prefEditor.putBoolean("loggedIn", true);  // writing in sharedPreference that user is logged in
-                                prefEditor.putString("user", username);
+                                prefEditor.putBoolean("loggedIn", true);  // writing in sharedPreference that a user is logged in
+                                prefEditor.putString("user", username);     // writing in sharedPreference which user is logged in
                                 prefEditor.apply();
-
-                                //sp.edit().putBoolean("loggedIn",true).apply();  // writing in sharedPreference that user is logged in
-                                //sp.edit().putString("user", username).apply();
 
                                 Intent intent = new Intent(LoginPage.this, UserArea.class);
                                 intent.putExtra("username", username);  // we use this extra info in the 'UserArea' page

@@ -18,13 +18,14 @@ public class UserArea extends AppCompatActivity {
         setContentView(R.layout.activity_user_area);
 
         final TextView etGreetings = (TextView) findViewById(tvGreet);
-
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
-
         String msg = "Welcome " + username;
         etGreetings.setText(msg);
+
     }
+
+
 
     public void BtnEditClicked(View view) {
         Intent intent = new Intent(this, EditTablePage.class);
@@ -41,5 +42,10 @@ public class UserArea extends AppCompatActivity {
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
         finish();  // to prevent getting back to UserArea page by pressing 'back' button
+    }
+
+    public void BtnTestClicked(View view) {
+        Intent intent = new Intent(this, testPage.class);
+        startActivity(intent);
     }
 }

@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".RegisterationPage" />
         <activity android:name=".UserArea" />
-        <activity android:name=".EditTablePage"></activity>
+        <activity android:name=".EditTablePage"/>
+        <activity android:name=".testPage"/>
     </application>
 
 </manifest>
