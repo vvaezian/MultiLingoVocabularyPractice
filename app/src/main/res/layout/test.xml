@@ -13,9 +13,8 @@
 
             <TextView
                 android:id="@+id/screenTitle"
-                android:layout_width="94dp"
-                android:layout_height="50dp"
-                android:background="@drawable/italy2"
+                android:layout_width="95dp"
+                android:layout_height="16dp"
                 android:text="test" />
         </LinearLayout>
 
@@ -24,10 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_marginBottom="0dp"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
             android:layout_marginTop="0dp"
-            android:padding="5dp"
+            android:padding="2dp"
             android:paddingBottom="0dp"
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
@@ -44,8 +43,9 @@
             <Button
                 android:id="@+id/add_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+ Add Languages" />
+                android:layout_height="38dp"
+                android:text="+ Add Languages"
+                android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>
     <!-- Sale Order Lines END -->
