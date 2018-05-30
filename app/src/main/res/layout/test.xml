@@ -13,8 +13,9 @@
 
             <TextView
                 android:id="@+id/screenTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="94dp"
+                android:layout_height="50dp"
+                android:background="@drawable/italy2"
                 android:text="test" />
         </LinearLayout>
 
@@ -22,22 +23,23 @@
             android:id="@+id/LanguageFlagsArea"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="20sp"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:layout_marginTop="20sp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="30dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="0dp"
+            android:padding="5dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingTop="0dp"
             android:stretchColumns="*">
 
         </TableLayout>
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dip"
-            android:paddingBottom="5dip">
+            android:padding="5dp">
 
             <Button
                 android:id="@+id/add_button"
