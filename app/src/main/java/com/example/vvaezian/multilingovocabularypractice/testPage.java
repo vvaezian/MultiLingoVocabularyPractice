@@ -15,15 +15,14 @@ public class testPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
 
+        final String[] langs = new String[]{"French", "German", "Spanish", "Italian"};  // This will be fetched from the duolingo-api
         TableLayout tl = (TableLayout) findViewById(R.id.LanguageFlagsArea);
-        final String[] langs = new String[]{"French", "German", "Spanish"};  // This will be fetched from the duolingo-api
         TableRow[] rows = new TableRow[langs.length];
-        //Button[] buttons = new Button[langs.length];
         final TextView[] buttons = new TextView[langs.length];
 
         for (int i=0; i < langs.length; i++){
 
-            final String langsElement = langs[i];  // the language of index i. Since it will be used "globally", needs to be declared final here
+            final String langsElement = langs[i];  // the language at index i. Since it will be used "globally", needs to be declared final here
 
             // Create a new row to be added.
             rows[i] = new TableRow(this);
@@ -33,11 +32,11 @@ public class testPage extends AppCompatActivity {
 
             // Create a button to be the row-content.
             buttons[i] = new Button(this);
-            buttons[i].setText("");
 
-            // put flag of language at index 'i' in the the background of the button
-            String flagName = langsElement.toLowerCase();
-            int resID = getResources().getIdentifier(flagName , "drawable", getPackageName());
+            // putting flag of the language at index 'i', in the the background of the button
+            String flagName = langsElement.toLowerCase();   // to lowercase because drawable folder doesn't accept capital letters and
+                                                            // duolingo-api returns language names with the first letter capitalized
+            int resID = getResources().getIdentifier(flagName , "drawable", getPackageName()); // resID is id of the resource named 'flagName'
             buttons[i].setBackgroundResource(resID);
 
             // clicking the button makes the flag transparent and the text visible
@@ -49,7 +48,6 @@ public class testPage extends AppCompatActivity {
                         String transparentFlagName = langsElement.toLowerCase() + "_transparent";
                         int resID = getResources().getIdentifier(transparentFlagName , "drawable", getPackageName());
                         button.setBackgroundResource(resID);
-                        button.setBackgroundResource(resID);
                         button.setText(langsElement);
                     }
             });
@@ -60,6 +58,5 @@ public class testPage extends AppCompatActivity {
             // Add the row to TableLayout.
             tl.addView(rows[i], params);
         }
-
     }
 }
