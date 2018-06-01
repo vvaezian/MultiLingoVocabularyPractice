@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.vvaezian.multilingovocabularypractice.RegisterationPage">
 
+    <ProgressBar
+        android:id="@+id/LoginProgressspinner"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etUsername"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/etUsername"
