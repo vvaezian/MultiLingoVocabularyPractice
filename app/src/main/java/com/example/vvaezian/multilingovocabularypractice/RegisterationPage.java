@@ -43,6 +43,7 @@ public class RegisterationPage extends AppCompatActivity {
                             if (success) {
                                 Intent intent = new Intent(RegisterationPage.this, LoginPage.class);
                                 RegisterationPage.this.startActivity(intent);
+                                finish();  // prevent getting back to this page by pressing 'back' button
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterationPage.this);
                                 builder.setMessage("Registeration Failed")
