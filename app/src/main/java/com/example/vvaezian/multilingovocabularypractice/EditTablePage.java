@@ -100,5 +100,4 @@ public class EditTablePage extends AppCompatActivity {
         );
     }
 
-
 }
