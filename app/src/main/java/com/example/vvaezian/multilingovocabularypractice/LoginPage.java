@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,7 +20,7 @@ import org.json.JSONObject;
 
 public class LoginPage extends AppCompatActivity {
 
-    // used to save whether the user is logged in
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class LoginPage extends AppCompatActivity {
 
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         // sp = getSharedPreferences("login", MODE_PRIVATE);
+
+        spinner = (ProgressBar) findViewById(R.id.LoginProgressspinner);
+        spinner.setVisibility(View.GONE);
 
         if(sp.getBoolean("loggedIn",false)){  //checking if anyone is logged in
             String LoggedInUser = sp.getString("user",""); // retrieve the username of the logged in person
@@ -51,6 +55,8 @@ public class LoginPage extends AppCompatActivity {
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
 
+                spinner.setVisibility(View.VISIBLE);
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -59,6 +65,7 @@ public class LoginPage extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if (success){
+                                spinner.setVisibility(View.GONE);
                                 String username = jsonResponse.getString("username");
 
                                 SharedPreferences.Editor prefEditor = sp.edit();
@@ -72,6 +79,7 @@ public class LoginPage extends AppCompatActivity {
                                 finish();  // prevent getting back to this page by pressing 'back' button
 
                             } else {
+                                spinner.setVisibility(View.GONE);
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginPage.this);
                                 builder.setMessage("Login Failed")
                                         .setNegativeButton("Retry", null)
