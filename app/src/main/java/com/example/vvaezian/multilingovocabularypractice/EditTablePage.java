@@ -65,7 +65,7 @@ public class EditTablePage extends AppCompatActivity {
                         }
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()) {
-                            buffer.append("ID : " + res.getString(0) + "\n");
+                            buffer.append("ID: " + res.getString(0) + "\n");
                             buffer.append("EN: " + res.getString(1) + "\n");
                             buffer.append("FR: " + res.getString(2) + "\n\n");
                         }

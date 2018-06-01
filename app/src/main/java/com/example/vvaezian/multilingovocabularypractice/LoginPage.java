@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 public class LoginPage extends AppCompatActivity {
 
-    private ProgressBar spinner;
+    private ProgressBar spinner;  // for showing loading spinner while logging in
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class LoginPage extends AppCompatActivity {
         final Button btnLogin = (Button) findViewById(R.id.BtnLogin);
 
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        // sp = getSharedPreferences("login", MODE_PRIVATE);
 
         spinner = (ProgressBar) findViewById(R.id.LoginProgressspinner);
         spinner.setVisibility(View.GONE);
