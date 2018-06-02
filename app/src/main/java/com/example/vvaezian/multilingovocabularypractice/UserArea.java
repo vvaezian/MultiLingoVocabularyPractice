@@ -22,16 +22,12 @@ public class UserArea extends AppCompatActivity {
         String username = intent.getStringExtra("username");
         String msg = "Welcome " + username;
         etGreetings.setText(msg);
-
     }
-
-
 
     public void BtnEditClicked(View view) {
         Intent intent = new Intent(this, EditTablePage.class);
         startActivity(intent);
     }
-
 
     public void BtnLogOutClicked(View view) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -46,6 +42,11 @@ public class UserArea extends AppCompatActivity {
 
     public void BtnTestClicked(View view) {
         Intent intent = new Intent(this, testPage.class);
+        startActivity(intent);
+    }
+
+    public void BtnTest2Clicked(View view) {
+        Intent intent = new Intent(this, test2Page.class);
         startActivity(intent);
     }
 }

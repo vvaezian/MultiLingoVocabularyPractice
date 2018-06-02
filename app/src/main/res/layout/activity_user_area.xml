@@ -55,6 +55,20 @@
         android:onClick="BtnTestClicked"
         android:text="Go to Test"
         android:textAllCaps="false"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:layout_toLeftOf="@+id/btnGoEditPage" />
+
+    <Button
+        android:id="@+id/test2"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="44dp"
+        android:onClick="BtnTest2Clicked"
+        android:text="Go to Test2"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>
