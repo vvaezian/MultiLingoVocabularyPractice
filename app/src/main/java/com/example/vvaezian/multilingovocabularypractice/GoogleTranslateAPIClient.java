@@ -6,7 +6,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GoogleTranslateAPIClient {
-    private static Retrofit retrofit = null;
 
     static Retrofit getClient() {
 
@@ -14,13 +13,11 @@ public class GoogleTranslateAPIClient {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        retrofit = new Retrofit.Builder()
+        return new Retrofit.Builder()
                 .baseUrl("https://translation.googleapis.com/language/translate/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-
-        return retrofit;
     }
 
 }

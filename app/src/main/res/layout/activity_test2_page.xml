@@ -6,13 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".test2Page">
 
+    <ProgressBar
+        android:id="@+id/TranslateProgressspinner"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp" />
+
     <TextView
-        android:id="@+id/tvTest2"
-        android:layout_width="154dp"
+        android:id="@+id/tvTest2fr"
+        android:layout_width="162dp"
         android:layout_height="78dp"
         android:layout_centerInParent="true"
-        android:text="Translated text appers here"
+        android:text="French Translation"
         android:textSize="18sp"
         android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/tvTest2sp"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="127dp"
+        android:text="Spanish Translation"
+        android:textSize="18sp" />
 
 </RelativeLayout>
