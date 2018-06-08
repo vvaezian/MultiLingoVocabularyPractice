@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MultiLingo Vocabulary Practice</string>
+    <string name="action_settings">action_settings</string>
+    <string name="action_logout">action_logout</string>
+    <string name="action_addWords">action_addWords</string>
+    <string name="logout">logout</string>
+    <string name="Logout">Logout</string>
 </resources>

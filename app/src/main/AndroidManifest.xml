@@ -23,7 +23,8 @@
         <activity android:name=".UserArea" />
         <activity android:name=".EditTablePage" />
         <activity android:name=".testPage" />
-        <activity android:name=".test2Page"></activity>
+        <activity android:name=".test2Page" />
+        <activity android:name=".ActionBar"></activity>
     </application>
 
 </manifest>

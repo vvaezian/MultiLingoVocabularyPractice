@@ -50,4 +50,3 @@ dependencies {
     }
     annotationProcessor 'com.google.cloud:google-cloud-translate:1.3.1'
 }
-

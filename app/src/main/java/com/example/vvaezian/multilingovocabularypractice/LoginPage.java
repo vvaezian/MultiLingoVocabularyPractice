@@ -70,6 +70,7 @@ public class LoginPage extends AppCompatActivity {
                                 SharedPreferences.Editor prefEditor = sp.edit();
                                 prefEditor.putBoolean("loggedIn", true);  // writing in sharedPreference that a user is logged in
                                 prefEditor.putString("user", username);     // writing in sharedPreference which user is logged in
+                                prefEditor.putString(username, "french spanish italian");     // writing in sharedPreference which user is logged in
                                 prefEditor.apply();
 
                                 Intent intent = new Intent(LoginPage.this, UserArea.class);

@@ -1,21 +1,28 @@
 package com.example.vvaezian.multilingovocabularypractice;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.preference.PreferenceManager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class testPage extends AppCompatActivity {
+public class testPage extends ActionBar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
+        setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 
-        final String[] langs = new String[]{"English", "French", "German", "Spanish", "Italian"};  // This will be fetched from the duolingo-api
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String LoggedInUser = sp.getString("user","");
+        final String langsConcated = sp.getString(LoggedInUser,"");
+        final String[] langs = langsConcated.split(" ");
+
         TableLayout tl = (TableLayout) findViewById(R.id.LanguageFlagsArea);
         TableRow[] rows = new TableRow[langs.length];
         final TextView[] buttons = new TextView[langs.length];
