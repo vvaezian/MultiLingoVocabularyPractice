@@ -28,14 +28,20 @@ public class ActionBar extends AppCompatActivity {
                 startActivity(intent1);
                 return true;
 
+            case R.id.action_settings:
+                //go to edit table page
+                Intent intent2 = new Intent(this, Settings.class);
+                startActivity(intent2);
+                return true;
+
             case R.id.action_logout:
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor prefEditor = sp.edit();
                 prefEditor.putBoolean("loggedIn", false);  // writing in sharedPreference that no one is logged in
                 prefEditor.apply();
 
-                Intent intent2 = new Intent(this, LoginPage.class);
-                startActivity(intent2);
+                Intent intent3 = new Intent(this, LoginPage.class);
+                startActivity(intent3);
                 finish();  // to prevent getting back to UserArea page by pressing 'back' button
                 return true;
 

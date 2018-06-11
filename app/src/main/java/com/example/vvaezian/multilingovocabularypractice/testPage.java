@@ -21,6 +21,7 @@ public class testPage extends ActionBar {
         setContentView(R.layout.test);
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 
+        // getting user's languages from shared preferences
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String LoggedInUser = sp.getString("user","");
         final String langsConcated = sp.getString(LoggedInUser,"");

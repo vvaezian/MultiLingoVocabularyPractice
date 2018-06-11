@@ -4,12 +4,29 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
 public class Settings extends AppCompatActivity {
+
+    String abbreviate(String langName){
+        String output = "";
+        switch (langName) {
+            case "French": output = "fr";
+                break;
+            case "English": output = "en";
+                break;
+            case "German": output = "de";
+                break;
+            case "Spanish": output = "es";
+                break;
+            case "Italian": output = "it";
+                break;
+                // think of a default value to add
+        }
+        return output;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +45,22 @@ public class Settings extends AppCompatActivity {
                 CheckBox cbGer = (CheckBox) findViewById(R.id.cbGer);
                 CheckBox cbSp = (CheckBox) findViewById(R.id.cbSp);
                 if (cbEn.isChecked()){
-                    langs += cbEn.getText().toString() + " ";
+                    langs += abbreviate(cbEn.getText().toString()) + " ";
                 }
                 if (cbFr.isChecked()){
-                    langs += cbFr.getText().toString() + " ";
+                    langs += abbreviate(cbFr.getText().toString()) + " ";
                 }
                 if (cbIt.isChecked()){
-                    langs += cbIt.getText().toString() + " ";
+                    langs += abbreviate(cbIt.getText().toString()) + " ";
                 }
                 if (cbGer.isChecked()){
-                    langs += cbGer.getText().toString() + " ";
+                    langs += abbreviate(cbGer.getText().toString()) + " ";
                 }
                 if (cbSp.isChecked()){
-                    langs += cbSp.getText().toString() + " ";
+                    langs += abbreviate(cbSp.getText().toString()) + " ";
                 }
-                Log.d("out", langs);
 
-                //Adding languages to the Shared Preferences
+                //Adding selected languages to the Shared Preferences
                 final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor prefEditor = sp.edit();
                 String username = sp.getString("user", "");
@@ -54,10 +70,8 @@ public class Settings extends AppCompatActivity {
             }
         });
     }
-
+    // this is needed.
     public void onCheckboxClicked(View view) {
-
+        // Clicking the checkboxes isn't gonna do anything
     }
-
-
 }
