@@ -16,31 +16,21 @@
         android:layout_width="120dp"
         android:layout_height="29dp"
 
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="131dp"
-        android:text="Greetings" />
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="66dp"
+        android:text="Greetings"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="19dp" />
 
-
-    <Button
-        android:id="@+id/btnGoEditPage"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="204dp"
-        android:onClick="BtnEditClicked"
-        android:text="Add Words"
-        android:textAllCaps="false"
-        android:textSize="12sp" />
 
     <Button
         android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/tvGreet"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="246dp"
         android:onClick="BtnTestClicked"
         android:text="Go to Test"
         android:textAllCaps="false"
@@ -49,13 +39,15 @@
     <Button
         android:id="@+id/test2"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="241dp"
+        android:layout_height="34dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/tvGreet"
+        android:layout_marginEnd="31dp"
         android:onClick="BtnTest2Clicked"
         android:text="Go to Test2"
         android:textAllCaps="false"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="31dp" />
 
 </RelativeLayout>

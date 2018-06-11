@@ -23,11 +23,6 @@ public class UserArea extends ActionBar {
         etGreetings.setText(msg);
     }
 
-    public void BtnEditClicked(View view) {
-        Intent intent = new Intent(this, EditTablePage.class);
-        startActivity(intent);
-    }
-
     public void BtnTestClicked(View view) {
         Intent intent = new Intent(this, testPage.class);
         startActivity(intent);
