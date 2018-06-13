@@ -58,7 +58,7 @@ public class EditTablePage extends AppCompatActivity {
                     }
                 };
 
-                EditTableRequest editTableRequest = new EditTableRequest(english, french, responseListener);
+                EditTableRequest editTableRequest = new EditTableRequest(english, french, "fr", responseListener);
                 RequestQueue queue = Volley.newRequestQueue(EditTablePage.this);
                 queue.add(editTableRequest);
             }

@@ -55,7 +55,7 @@ public class testPage extends ActionBar {
         }
         */
 
-        else {
+        else { // programmatically create fields to hold flags and translations
             TableLayout tl = (TableLayout) findViewById(R.id.LanguageFlagsArea);
             TableRow[] rows = new TableRow[langs.length];
             final TextView[] buttons = new TextView[langs.length];
@@ -74,9 +74,7 @@ public class testPage extends ActionBar {
                 buttons[i] = new Button(this);
 
                 // putting flag of the language at index 'i', in the the background of the button
-                String flagName = langsElement.toLowerCase();   // to lowercase because drawable folder doesn't accept capital letters and
-                // duolingo-api returns language names with the first letter capitalized
-                int resID = getResources().getIdentifier(flagName , "drawable", getPackageName()); // resID is id of the resource named 'flagName'
+                int resID = getResources().getIdentifier(langsElement , "drawable", getPackageName()); // resID is id of the resource with the name in langsElement
                 buttons[i].setBackgroundResource(resID);
 
                 // clicking the button makes the flag transparent and the text visible
@@ -85,8 +83,7 @@ public class testPage extends ActionBar {
                     public void onClick(View v) {
                         Button button = (Button) v;
 
-                        String transparentFlagName = langsElement.toLowerCase() + "_transparent";
-                        int resID = getResources().getIdentifier(transparentFlagName , "drawable", getPackageName());
+                        int resID = getResources().getIdentifier(langsElement + "_transparent" , "drawable", getPackageName());
                         button.setBackgroundResource(resID);
                         button.setText(langsElement);
                     }
