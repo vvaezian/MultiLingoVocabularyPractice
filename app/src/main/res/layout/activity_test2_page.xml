@@ -14,15 +14,17 @@
     <ProgressBar
         android:id="@+id/TranslateProgressspinner"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="79dp"
+        android:layout_width="60dp"
+        android:layout_height="57dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
         android:layout_marginEnd="154dp"
         android:layout_marginLeft="154dp"
         android:layout_marginRight="154dp"
         android:layout_marginStart="154dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
@@ -33,14 +35,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="72dp"
-        android:layout_marginRight="72dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
         android:hint="Enter a word"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/btnTranslate"
-        app:layout_constraintTop_toBottomOf="@+id/TranslateProgressspinner" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <Button
         android:id="@+id/btnTranslate"
