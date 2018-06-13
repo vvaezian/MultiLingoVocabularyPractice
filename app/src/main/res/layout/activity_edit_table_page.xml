@@ -1,33 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/r_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.vvaezian.multilingovocabularypractice.EditTablePage">
+    tools:context=".EditTablePage">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/my_toolbar" />
+
+    <ProgressBar
+        android:id="@+id/TranslateProgressspinner"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="60dp"
+        android:layout_height="57dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="154dp"
+        android:layout_marginLeft="154dp"
+        android:layout_marginRight="154dp"
+        android:layout_marginStart="154dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/etInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
     <EditText
-        android:id="@+id/etEN"
-        android:layout_width="wrap_content"
+        android:id="@+id/etInput"
+        android:layout_width="177dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="174dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
-        android:hint="English"
-        android:inputType="textPersonName" />
+        android:hint="Enter a word"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/btnTranslate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
 
-    <EditText
-        android:id="@+id/etFR"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnTranslate"
+        android:layout_width="86dp"
+        android:layout_height="36dp"
+        android:layout_alignBottom="@+id/etInput"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="34dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginTop="95dp"
+        android:text="Translate!"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="354dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="234dp"
-        android:ems="10"
-        android:hint="Fench"
-        android:inputType="textPersonName" />
+        android:layout_marginEnd="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etInput">
+
+        <TableLayout
+            android:id="@+id/TranslatedLanguagesArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:layout_marginTop="0dp"
+            android:padding="2dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingTop="0dp"
+            android:stretchColumns="*">
+        </TableLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnSave"
@@ -35,7 +104,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="215dp"
-        android:text="Save" />
+        android:layout_marginEnd="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginRight="148dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="20dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
