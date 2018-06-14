@@ -3,7 +3,6 @@ package com.example.vvaezian.multilingovocabularypractice;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -164,21 +163,9 @@ public class EditTablePage extends ActionBar {
                                 boolean success = jsonResponse.getBoolean("success");
 
                                 if (success) {
-                                    final Toast toast = Toast.makeText(getBaseContext(), "Success!", Toast.LENGTH_LONG);
-                                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
-                                    toast.show();
-
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            toast.cancel();
-                                        }
-                                    }, 200);
+                                    Toast.makeText(getBaseContext(), "Success!", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast toast = Toast.makeText(getBaseContext(), "Saving Failed!", Toast.LENGTH_LONG);
-                                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
-                                    toast.show();
+                                    Toast.makeText(getBaseContext(), "Saving Failed!", Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
