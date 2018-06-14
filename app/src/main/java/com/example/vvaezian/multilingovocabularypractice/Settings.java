@@ -3,6 +3,7 @@ package com.example.vvaezian.multilingovocabularypractice;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +34,23 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        // getting user's languages from shared preferences
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String LoggedInUser = sp.getString("user","");
+        final String langsConcated = sp.getString(LoggedInUser,"");
+        final String[] langs = langsConcated.split(" ");
 
+        // making the user's languages checked
+        ConstraintLayout checkBoxesArea = (ConstraintLayout) findViewById(R.id.CLcheckBoxesArea);
+        for (int i=0; i < checkBoxesArea.getChildCount(); i++){
+            CheckBox cb = (CheckBox) checkBoxesArea.getChildAt(i);
+            String cbText = abbreviate(cb.getText().toString());
+            for (String lang:langs)
+                if (cbText.equals(lang))
+                    cb.setChecked(true);
+        }
+
+        //saving user's language choices
         Button btnSave = (Button) findViewById(R.id.btnSaveLangs);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

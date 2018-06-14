@@ -36,18 +36,4 @@
         android:textAllCaps="false"
         android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/test2"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/tvGreet"
-        android:layout_marginEnd="31dp"
-        android:onClick="BtnTest2Clicked"
-        android:text="Go to Test2"
-        android:textAllCaps="false"
-        android:textSize="12sp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="31dp" />
-
 </RelativeLayout>

@@ -81,6 +81,7 @@ public class EditTablePage extends ActionBar {
         String LoggedInUser = sp.getString("user","");
         final String langsConcated = sp.getString(LoggedInUser,"");
         final String[] langs = langsConcated.split(" ");
+
         final String[] translations = new String[langs.length];
 
         // producing fields to hold translations

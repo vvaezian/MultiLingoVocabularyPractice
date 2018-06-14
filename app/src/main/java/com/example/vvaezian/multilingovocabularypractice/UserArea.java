@@ -28,8 +28,4 @@ public class UserArea extends ActionBar {
         startActivity(intent);
     }
 
-    public void BtnTest2Clicked(View view) {
-        Intent intent = new Intent(this, test2Page.class);
-        startActivity(intent);
-    }
 }
