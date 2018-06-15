@@ -17,12 +17,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.google.cloud.translate.Translation;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -68,7 +63,6 @@ public class EditTablePage extends ActionBar {
         });
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +75,12 @@ public class EditTablePage extends ActionBar {
         final String langsConcated = sp.getString(LoggedInUser,"");
         final String[] langs = langsConcated.split(" ");
 
+        String s = getPackageName();
         final String[] translations = new String[langs.length];
+
+
+
+        final DatabaseHelper myDB = new DatabaseHelper(this);
 
         // producing fields to hold translations
         final TableLayout tl = (TableLayout) findViewById(R.id.TranslatedLanguagesArea);
@@ -148,35 +147,18 @@ public class EditTablePage extends ActionBar {
             @Override
             public void onClick(View v) {
                 String sourceWord = etInput.getText().toString();
-
                 // looping through TextViews to get the final version of translated words (user may edit the translated words before save)
                 for (int i=0; i < tl.getChildCount(); i++) {
                     TableRow tr = (TableRow) tl.getChildAt(i);
                     EditText tv = (EditText) tr.getChildAt(0);
                     translations[i] = tv.getText().toString();
-
-                    com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-                                JSONObject jsonResponse = new JSONObject(response);
-                                boolean success = jsonResponse.getBoolean("success");
-
-                                if (success) {
-                                    Toast.makeText(getBaseContext(), "Success!", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(getBaseContext(), "Saving Failed!", Toast.LENGTH_LONG).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    };
-
-                    EditTableRequest editTableRequest = new EditTableRequest(sourceWord, translations[i], langs[i], responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(EditTablePage.this);
-                    queue.add(editTableRequest);
                 }
+
+                boolean isInserted = myDB.insertData(sourceWord, translations[0], translations[1]);
+                if (isInserted)
+                    Toast.makeText(EditTablePage.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(EditTablePage.this, "Data Insertion Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
