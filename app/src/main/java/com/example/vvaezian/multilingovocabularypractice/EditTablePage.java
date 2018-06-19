@@ -71,12 +71,13 @@ public class EditTablePage extends ActionBar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_table_page);
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 
         // setting dropDown Spinner items
-        Spinner dropDownSpinner = (Spinner) findViewById(R.id.spSourceLang);
+        final Spinner dropDownSpinner = (Spinner) findViewById(R.id.spSourceLang);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.languages_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -107,7 +108,7 @@ public class EditTablePage extends ActionBar {
 
             // Create an EditText item to be the row-content.
             et[i] = new EditText(this);
-            et[i].setHint(HelperFunctions.deAbbreviate(langs[i]));
+            et[i].setHint(HelperFunctions.deAbbreviate(langs[i]) + " Translation");
 
             // Add the button to row.
             rows[i].addView(et[i]);
@@ -139,12 +140,18 @@ public class EditTablePage extends ActionBar {
                 }
 
                 String inputWords = etInput.getText().toString();
+                String sourceLang;
+                String spinnerText = dropDownSpinner.getSelectedItem().toString();
+                if (spinnerText.equals("Auto-Detect"))
+                    sourceLang = "";
+                else
+                    sourceLang = HelperFunctions.abbreviate(spinnerText);
 
                 // looping through EditTexts to set the translations
                 for (int i=0; i < tl.getChildCount(); i++){
                     TableRow tr = (TableRow) tl.getChildAt(i);
                     EditText tv = (EditText) tr.getChildAt(0);
-                    translateWord(inputWords,"en", langs[i], tv);
+                    translateWord(inputWords, sourceLang, langs[i], tv);
                 }
                 loadingSpinner.setVisibility(View.GONE);
             }
@@ -156,7 +163,9 @@ public class EditTablePage extends ActionBar {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String sourceWord = etInput.getText().toString();
+
                 // looping through TextViews to get the final version of translated words (user may edit the translated words before save)
                 for (int i=0; i < tl.getChildCount(); i++) {
                     TableRow tr = (TableRow) tl.getChildAt(i);
