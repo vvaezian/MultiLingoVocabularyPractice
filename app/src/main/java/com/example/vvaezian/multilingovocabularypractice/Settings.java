@@ -10,25 +10,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-public class Settings extends AppCompatActivity {
+import static com.example.vvaezian.multilingovocabularypractice.HelperFunctions.abbreviate;
 
-    String abbreviate(String langName){
-        String output = "";
-        switch (langName) {
-            case "French": output = "fr";
-                break;
-            case "English": output = "en";
-                break;
-            case "German": output = "de";
-                break;
-            case "Spanish": output = "es";
-                break;
-            case "Italian": output = "it";
-                break;
-                // think of a default value to add
-        }
-        return output;
-    }
+public class Settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +29,7 @@ public class Settings extends AppCompatActivity {
         ConstraintLayout checkBoxesArea = (ConstraintLayout) findViewById(R.id.CLcheckBoxesArea);
         for (int i=0; i < checkBoxesArea.getChildCount(); i++){
             CheckBox cb = (CheckBox) checkBoxesArea.getChildAt(i);
+            // the method abbreviate is defined in HelperFunctions class (it has been imported)
             String cbText = abbreviate(cb.getText().toString());
             for (String lang:langs)
                 if (cbText.equals(lang))

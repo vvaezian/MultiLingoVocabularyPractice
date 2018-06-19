@@ -27,7 +27,8 @@
         app:layout_constraintBottom_toTopOf="@+id/etInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/etInput"
@@ -39,12 +40,12 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="60dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="116dp"
         android:ems="10"
         android:hint="Enter a word"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/btnTranslate"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
@@ -56,14 +57,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="34dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginRight="26dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginTop="95dp"
         android:text="Translate!"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -113,5 +115,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Spinner
+        android:id="@+id/spSourceLang"
+        android:layout_width="249dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginRight="67dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TranslateProgressspinner" />
 
 </android.support.constraint.ConstraintLayout>

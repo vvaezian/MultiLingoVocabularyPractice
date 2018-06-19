@@ -2,24 +2,29 @@ package com.example.vvaezian.multilingovocabularypractice;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.cloud.translate.Translation;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,19 +34,19 @@ import retrofit2.Response;
 public class EditTablePage extends ActionBar {
 
     GoogleTranslateAPIInterface apiInterface;
-    private ProgressBar spinner;
+    private ProgressBar loadingSpinner;
 
-    public void translateWord(String Query, String source, String target, final TextView et) {
+    public void translateWord(String query, String source, String target, final EditText et) {
         /* This function translates the 'query' into 'target' language, and shows it in the et EditText */
         String apiKey = BuildConfig.ApiKey;
         //using Retrofit to send a request to Google-Translate-API and receive the response
         Call<GoogleTranslateAPIResponse> call = apiInterface.translateWord(
-                Query, source, target, apiKey);
+                query, source, target, apiKey);
         call.enqueue(new Callback<GoogleTranslateAPIResponse>() {
             @Override
-            public void onResponse(Call<GoogleTranslateAPIResponse> call, Response<GoogleTranslateAPIResponse> response) {
+            public void onResponse(@NonNull Call<GoogleTranslateAPIResponse> call, @NonNull Response<GoogleTranslateAPIResponse> response) {
 
-                spinner.setVisibility(View.GONE);
+                loadingSpinner.setVisibility(View.GONE);
                 GoogleTranslateAPIResponse apiResponse = response.body();
 
                 if (apiResponse == null) {
@@ -50,6 +55,7 @@ public class EditTablePage extends ActionBar {
                     toast.show();
                 }
 
+                assert apiResponse != null;
                 GoogleTranslateAPIResponse.Data dataResponse = apiResponse.getData();
                 List<Translation> list = dataResponse.getTranslations();
                 String returnedText = list.get(0).getTranslatedText();
@@ -57,7 +63,7 @@ public class EditTablePage extends ActionBar {
             }
 
             @Override
-            public void onFailure(Call<GoogleTranslateAPIResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<GoogleTranslateAPIResponse> call, @NonNull Throwable t) {
                 Log.d("out","fail");
             }
         });
@@ -69,16 +75,22 @@ public class EditTablePage extends ActionBar {
         setContentView(R.layout.activity_edit_table_page);
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 
+        // setting dropDown Spinner items
+        Spinner dropDownSpinner = (Spinner) findViewById(R.id.spSourceLang);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.languages_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropDownSpinner.setAdapter(adapter);
+
         // getting user's languages from shared preferences
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String LoggedInUser = sp.getString("user","");
         final String langsConcated = sp.getString(LoggedInUser,"");
         final String[] langs = langsConcated.split(" ");
 
-        String s = getPackageName();
         final String[] translations = new String[langs.length];
 
-        final DatabaseHelper myDB = DatabaseFactory.getDataBaseHelper(this);
+        final DatabaseHelper myDB = HelperFunctions.getDataBaseHelper(this);
 
         // producing fields to hold translations
         final TableLayout tl = (TableLayout) findViewById(R.id.TranslatedLanguagesArea);
@@ -86,8 +98,6 @@ public class EditTablePage extends ActionBar {
         final EditText[] et = new EditText[langs.length];
 
         for (int i=0; i < langs.length; i++){
-
-            final String langsElement = langs[i];  // the language at index i.
 
             // Create a new row to be added.
             rows[i] = new TableRow(this);
@@ -97,7 +107,7 @@ public class EditTablePage extends ActionBar {
 
             // Create an EditText item to be the row-content.
             et[i] = new EditText(this);
-            et[i].setText(langs[i]);
+            et[i].setHint(HelperFunctions.deAbbreviate(langs[i]));
 
             // Add the button to row.
             rows[i].addView(et[i]);
@@ -108,21 +118,23 @@ public class EditTablePage extends ActionBar {
 
         final EditText etInput = (EditText) findViewById(R.id.etInput);
         Button translateButton = (Button) findViewById(R.id.btnTranslate);
-        spinner = (ProgressBar) findViewById(R.id.TranslateProgressspinner);
-        spinner.setVisibility(View.GONE);
+        loadingSpinner = (ProgressBar) findViewById(R.id.TranslateProgressspinner);
+        loadingSpinner.setVisibility(View.GONE);
         apiInterface = GoogleTranslateAPIClient.getClient().create(GoogleTranslateAPIInterface.class);
 
         //producing and setting translations
         translateButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View view) {
 
-                spinner.setVisibility(View.VISIBLE);
+                loadingSpinner.setVisibility(View.VISIBLE);
+
                 // closing the virtual keyboard when button is clicked
                 InputMethodManager inputManager = (InputMethodManager)
                         getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (inputManager != null) {
-                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                    inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getCurrentFocus()).getWindowToken(),
                             InputMethodManager.HIDE_NOT_ALWAYS);
                 }
 
@@ -134,7 +146,7 @@ public class EditTablePage extends ActionBar {
                     EditText tv = (EditText) tr.getChildAt(0);
                     translateWord(inputWords,"en", langs[i], tv);
                 }
-                spinner.setVisibility(View.GONE);
+                loadingSpinner.setVisibility(View.GONE);
             }
         });
 
