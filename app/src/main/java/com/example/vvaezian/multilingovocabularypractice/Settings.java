@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 public class Settings extends AppCompatActivity {
 
@@ -83,7 +84,11 @@ public class Settings extends AppCompatActivity {
                 String username = sp.getString("user", "");
                 prefEditor.remove(username);    // clearing the previous value
                 prefEditor.putString(username, langs);  // adding the new value
-                prefEditor.apply();
+                boolean res = prefEditor.commit();
+                if (res)
+                    Toast.makeText(Settings.this, "Settings Saved", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(Settings.this, "Saving Failed!", Toast.LENGTH_LONG).show();
             }
         });
     }

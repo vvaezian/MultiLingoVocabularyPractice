@@ -31,12 +31,12 @@ public class EditTablePage extends ActionBar {
     GoogleTranslateAPIInterface apiInterface;
     private ProgressBar spinner;
 
-    public void translateWord(String Query, String target, final TextView et) {
+    public void translateWord(String Query, String source, String target, final TextView et) {
         /* This function translates the 'query' into 'target' language, and shows it in the et EditText */
         String apiKey = BuildConfig.ApiKey;
         //using Retrofit to send a request to Google-Translate-API and receive the response
         Call<GoogleTranslateAPIResponse> call = apiInterface.translateWord(
-                Query, target,apiKey);
+                Query, source, target, apiKey);
         call.enqueue(new Callback<GoogleTranslateAPIResponse>() {
             @Override
             public void onResponse(Call<GoogleTranslateAPIResponse> call, Response<GoogleTranslateAPIResponse> response) {
@@ -78,9 +78,7 @@ public class EditTablePage extends ActionBar {
         String s = getPackageName();
         final String[] translations = new String[langs.length];
 
-
-
-        final DatabaseHelper myDB = new DatabaseHelper(this);
+        final DatabaseHelper myDB = DatabaseFactory.getDataBaseHelper(this);
 
         // producing fields to hold translations
         final TableLayout tl = (TableLayout) findViewById(R.id.TranslatedLanguagesArea);
@@ -134,7 +132,7 @@ public class EditTablePage extends ActionBar {
                 for (int i=0; i < tl.getChildCount(); i++){
                     TableRow tr = (TableRow) tl.getChildAt(i);
                     EditText tv = (EditText) tr.getChildAt(0);
-                    translateWord(inputWords, langs[i], tv);
+                    translateWord(inputWords,"en", langs[i], tv);
                 }
                 spinner.setVisibility(View.GONE);
             }
@@ -154,7 +152,7 @@ public class EditTablePage extends ActionBar {
                     translations[i] = tv.getText().toString();
                 }
 
-                boolean isInserted = myDB.insertData(sourceWord, translations[0], translations[1]);
+                boolean isInserted = myDB.insertData(sourceWord, langs, translations);
                 if (isInserted)
                     Toast.makeText(EditTablePage.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
                 else
