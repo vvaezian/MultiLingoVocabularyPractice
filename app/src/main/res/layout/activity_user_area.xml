@@ -24,7 +24,6 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="19dp" />
 
-
     <Button
         android:id="@+id/test"
         android:layout_width="wrap_content"

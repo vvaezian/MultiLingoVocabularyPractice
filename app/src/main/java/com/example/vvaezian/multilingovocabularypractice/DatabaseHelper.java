@@ -9,7 +9,7 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(final Context context, final String dbName) {
-        // for explanation of the extra argument `dbName` see DatabaseFactory java file
+        // for explanation of the extra argument `dbName` see getDataBaseHelper method in HelperFunctions java file
         super(context, dbName, null, 1);
     }
 

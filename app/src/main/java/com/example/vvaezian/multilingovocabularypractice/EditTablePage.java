@@ -21,7 +21,12 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.google.cloud.translate.Translation;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Objects;
@@ -75,6 +80,35 @@ public class EditTablePage extends ActionBar {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_table_page);
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
+
+        //testing sync
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        Toast.makeText(EditTablePage.this, "Synced Successfully", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(EditTablePage.this, "Syncing Failed", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        JSONObject dirtyRows = new JSONObject();
+        try {
+            dirtyRows.put("source", "syncTest2");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String finalJson = dirtyRows.toString();
+        SyncWithSQLServerRequest syncRequest = new SyncWithSQLServerRequest("majid", finalJson, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(EditTablePage.this);
+        queue.add(syncRequest);
 
         // setting dropDown Spinner items
         final Spinner dropDownSpinner = (Spinner) findViewById(R.id.spSourceLang);
