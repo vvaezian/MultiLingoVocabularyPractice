@@ -2,6 +2,7 @@ package com.example.vvaezian.multilingovocabularypractice;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -40,10 +41,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    final String TABLE_NAME = "WordsTable";
+
     // this function is used in 'EditTablePage'
     public boolean insertData(String sourceText, String[] langs, String[] translations){
-
-        final String TABLE_NAME = "WordsTable";
 
         // TODO: call getWritableDatabase() or getReadableDatabase() in a background thread,
         // such as with AsyncTask or IntentService, because they make be 'long-running'
@@ -59,5 +60,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insertWithOnConflict(TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE);
         // On failure, 'insertWithOnConflict' returns -1. We use this to return True/False
         return result != -1;
+    }
+
+    public Cursor getData(String columnsConcated) {
+        String [] langs = columnsConcated.split(" ");
+        StringBuilder cols = new StringBuilder();
+        for (String lang : langs)
+            cols.append(lang).append(", ");
+        String columns = cols.substring(0, cols.length() - 2); //to get rid of the last ", "
+        Log.d("--- getData columns---", columns);
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT source, " + columns + " FROM " + TABLE_NAME;
+        Log.d("--- getData columns2---", query);
+        return db.rawQuery(query, null);
+    }
+
+    public Integer deleteData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, "ID = ?", new String[] {id} );
     }
 }

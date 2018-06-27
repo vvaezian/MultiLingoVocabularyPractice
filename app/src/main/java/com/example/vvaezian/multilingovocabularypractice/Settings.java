@@ -64,7 +64,7 @@ public class Settings extends AppCompatActivity {
                 }
 
                 //Adding selected languages to the Shared Preferences
-                final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                //final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor prefEditor = sp.edit();
                 String username = sp.getString("user", "");
                 prefEditor.remove(username);    // clearing the previous value

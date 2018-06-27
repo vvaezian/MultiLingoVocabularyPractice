@@ -2,6 +2,7 @@ package com.example.vvaezian.multilingovocabularypractice;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -81,6 +82,9 @@ public class EditTablePage extends ActionBar {
         setContentView(R.layout.activity_edit_table_page);
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 
+        final DatabaseHelper userDB = HelperFunctions.getDataBaseHelper(this);
+
+
         //testing sync
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -99,14 +103,18 @@ public class EditTablePage extends ActionBar {
                 }
             }
         };
+
         JSONObject dirtyRows = new JSONObject();
+
         try {
-            dirtyRows.put("source", "syncTest2");
+            dirtyRows.put("source", "syncTest4");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String finalJson = dirtyRows.toString();
-        SyncWithSQLServerRequest syncRequest = new SyncWithSQLServerRequest("majid", finalJson, responseListener);
+        String jsonString = dirtyRows.toString();
+        Log.d("--- json ---", jsonString);
+        SyncWithSQLServerRequest syncRequest = new SyncWithSQLServerRequest("majid", jsonString, responseListener);
         RequestQueue queue = Volley.newRequestQueue(EditTablePage.this);
         queue.add(syncRequest);
 
@@ -125,8 +133,21 @@ public class EditTablePage extends ActionBar {
 
         final String[] translations = new String[langs.length];
 
-        final DatabaseHelper myDB = HelperFunctions.getDataBaseHelper(this);
-
+        //testing getData
+        Cursor cursor = userDB.getData(langsConcated);
+        String cols = langsConcated + "source";
+        Log.d("out", cols);
+        String[] columns = cols.split(" ");
+        cursor.moveToFirst();
+        for (int i=1; i <= 3; i++){
+            for (String col : columns)
+                if (cursor.getString(cursor.getColumnIndex(col)) != null)
+                    Log.d("out-cursor", cursor.getString(cursor.getColumnIndex(col)));
+                else
+                    Log.d("out-cursor", "null");
+            cursor.moveToNext();
+        }
+        cursor.close();
         // producing fields to hold translations
         final TableLayout tl = (TableLayout) findViewById(R.id.TranslatedLanguagesArea);
         TableRow[] rows = new TableRow[langs.length];
@@ -207,7 +228,7 @@ public class EditTablePage extends ActionBar {
                     translations[i] = tv.getText().toString();
                 }
 
-                boolean isInserted = myDB.insertData(sourceWord, langs, translations);
+                boolean isInserted = userDB.insertData(sourceWord, langs, translations);
                 if (isInserted)
                     Toast.makeText(EditTablePage.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
                 else
