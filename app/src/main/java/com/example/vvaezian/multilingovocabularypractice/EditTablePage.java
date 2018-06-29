@@ -133,21 +133,18 @@ public class EditTablePage extends ActionBar {
 
         final String[] translations = new String[langs.length];
 
-        //testing getData
-        Cursor cursor = userDB.getData(langsConcated);
-        String cols = langsConcated + "source";
-        Log.d("out", cols);
-        String[] columns = cols.split(" ");
-        cursor.moveToFirst();
-        for (int i=1; i <= 3; i++){
-            for (String col : columns)
-                if (cursor.getString(cursor.getColumnIndex(col)) != null)
-                    Log.d("out-cursor", cursor.getString(cursor.getColumnIndex(col)));
-                else
-                    Log.d("out-cursor", "null");
-            cursor.moveToNext();
+        //testing getDirtyData
+        if (!userDB.wordsTableIsEmpty()) {
+            Cursor cursor = userDB.getDirtyData(langsConcated);
+            cursor.moveToFirst();
+            do {for (int i=0; i < cursor.getColumnCount(); i++)
+                    if (cursor.getString(i) != null)
+                        Log.d("out-cursor", cursor.getString(i));
+                    else
+                        Log.d("out-cursor", "null");
+            } while (cursor.moveToNext());
+            cursor.close();
         }
-        cursor.close();
         // producing fields to hold translations
         final TableLayout tl = (TableLayout) findViewById(R.id.TranslatedLanguagesArea);
         TableRow[] rows = new TableRow[langs.length];

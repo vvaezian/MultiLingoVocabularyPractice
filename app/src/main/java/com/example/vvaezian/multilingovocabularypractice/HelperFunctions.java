@@ -47,7 +47,7 @@ public class HelperFunctions {
     public static DatabaseHelper getDataBaseHelper(final Context context){
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String loggedInUser = sp.getString("user","");
-        final String databaseName = loggedInUser + ".db";
+        final String databaseName = loggedInUser + "Database2.db";
         return new DatabaseHelper(context, databaseName);
     }
 }

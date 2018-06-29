@@ -3,6 +3,7 @@ package com.example.vvaezian.multilingovocabularypractice;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -23,12 +24,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         final String TABLE_NAME = "WordsTable";
         final String[] allLangs = {"fr", "de", "es", "it", "en"};
 
-        createString = "CREATE TABLE "
-                + TABLE_NAME + " (source TEXT PRIMARY KEY";
+        createString = "CREATE TABLE " + TABLE_NAME + " (source TEXT PRIMARY KEY";
         for (String lang:allLangs)
             createString += ", " + lang + " Text";
-        createString += ");";
-        Log.d("out", createString);
+        createString += ",status TINYINT );";
+        Log.d("create query: ", createString);
         db.execSQL(createString);
     }
     // TODO: Implement onUpgrade properly
@@ -55,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("source", sourceText);
         for (int i=0; i< langs.length; i++)
             contentValues.put(langs[i], translations[i]);
+        contentValues.put("status", 0);
 
         // Insert the new row, returning the primary key value of the new row
         long result = db.insertWithOnConflict(TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE);
@@ -62,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public Cursor getData(String columnsConcated) {
+    public Cursor getDirtyData(String columnsConcated) {
         String [] langs = columnsConcated.split(" ");
         StringBuilder cols = new StringBuilder();
         for (String lang : langs)
@@ -70,9 +71,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String columns = cols.substring(0, cols.length() - 2); //to get rid of the last ", "
         Log.d("--- getData columns---", columns);
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT source, " + columns + " FROM " + TABLE_NAME;
+        String query = "SELECT source, " + columns + " FROM " + TABLE_NAME + " WHERE status = 0 ";
         Log.d("--- getData columns2---", query);
         return db.rawQuery(query, null);
+    }
+
+    public boolean wordsTableIsEmpty(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        int NoOfRows = (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        return NoOfRows == 0;
     }
 
     public Integer deleteData(String id){
