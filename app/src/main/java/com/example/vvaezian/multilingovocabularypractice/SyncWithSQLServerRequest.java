@@ -11,11 +11,11 @@ public class SyncWithSQLServerRequest extends StringRequest {
     private static final String SYNC_REQUEST_URL = "https://vahidvaezian.000webhostapp.com/sync.php";
     private Map<String,String> params;
 
-    public SyncWithSQLServerRequest(String username, String dirtyRows, Response.Listener<String> listener) {
+    public SyncWithSQLServerRequest(String username, String jsonString, Response.Listener<String> listener) {
         super(Request.Method.POST, SYNC_REQUEST_URL, listener, null);
         params = new HashMap<>();
         params.put("username", username);
-        params.put("dirtyRows", dirtyRows);
+        params.put("jsonString", jsonString);
     }
 
     @Override

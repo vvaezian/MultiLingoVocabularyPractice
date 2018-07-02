@@ -26,6 +26,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.google.cloud.translate.Translation;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,7 +85,6 @@ public class EditTablePage extends ActionBar {
 
         final DatabaseHelper userDB = HelperFunctions.getDataBaseHelper(this);
 
-
         //testing sync
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -105,14 +105,32 @@ public class EditTablePage extends ActionBar {
         };
 
         JSONObject dirtyRows = new JSONObject();
-
         try {
-            dirtyRows.put("source", "syncTest4");
+            dirtyRows.put("source", "cat");
+            dirtyRows.put("fr", "chat");
+            dirtyRows.put("de", "Katze");
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        String jsonString = dirtyRows.toString();
+
+        JSONObject dirtyRows2 = new JSONObject();
+        try {
+            dirtyRows2.put("source", "dog");
+            dirtyRows2.put("fr", "chien");
+            dirtyRows2.put("de", "Hund");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        //testing JsonArray
+        JSONArray test = new JSONArray();
+        test.put(dirtyRows);
+        test.put(dirtyRows2);
+        Log.d("jsonArrayTest", test.toString());
+
+        String jsonString = test.toString();
         Log.d("--- json ---", jsonString);
         SyncWithSQLServerRequest syncRequest = new SyncWithSQLServerRequest("majid", jsonString, responseListener);
         RequestQueue queue = Volley.newRequestQueue(EditTablePage.this);
@@ -145,6 +163,7 @@ public class EditTablePage extends ActionBar {
             } while (cursor.moveToNext());
             cursor.close();
         }
+
         // producing fields to hold translations
         final TableLayout tl = (TableLayout) findViewById(R.id.TranslatedLanguagesArea);
         TableRow[] rows = new TableRow[langs.length];
