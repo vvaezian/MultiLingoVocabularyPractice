@@ -47,7 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertData(String sourceText, String[] langs, String[] translations){
 
         // TODO: call getWritableDatabase() or getReadableDatabase() in a background thread,
-        // such as with AsyncTask or IntentService, because they make be 'long-running'
+        // such as with AsyncTask or IntentService, because they may be 'long-running'
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys

@@ -124,14 +124,12 @@ public class EditTablePage extends ActionBar {
             e.printStackTrace();
         }
 
-        //testing JsonArray
         JSONArray test = new JSONArray();
         test.put(dirtyRows);
         test.put(dirtyRows2);
-        Log.d("jsonArrayTest", test.toString());
-
         String jsonString = test.toString();
         Log.d("--- json ---", jsonString);
+
         SyncWithSQLServerRequest syncRequest = new SyncWithSQLServerRequest("majid", jsonString, responseListener);
         RequestQueue queue = Volley.newRequestQueue(EditTablePage.this);
         queue.add(syncRequest);

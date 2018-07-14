@@ -47,6 +47,7 @@ public class RegisterationPage extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
 
+                            //TODO: If username not available, inform the user
                             if (success) {
                                 spinner.setVisibility(View.GONE);
                                 Intent intent = new Intent(RegisterationPage.this, LoginPage.class);

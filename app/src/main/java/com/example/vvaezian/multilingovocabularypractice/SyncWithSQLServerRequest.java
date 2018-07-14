@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SyncWithSQLServerRequest extends StringRequest {
-    private static final String SYNC_REQUEST_URL = "https://vahidvaezian.000webhostapp.com/sync.php";
+    private static final String SYNC_REQUEST_URL = "https://vahidvaezian.000webhostapp.com/syncUp.php";
     private Map<String,String> params;
 
     public SyncWithSQLServerRequest(String username, String jsonString, Response.Listener<String> listener) {
