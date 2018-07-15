@@ -13,7 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HelperFunctions extends ActionBar {
+public class HelperFunctions  {
 
     public static String abbreviate(String langName){
         String output = "";
