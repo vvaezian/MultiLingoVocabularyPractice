@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, dbName, null, 1);
     }
 
-    // String used for programmatically generate SQL Create Table command
+    // String used to programmatically generate SQL Create Table command
     public static String createString;
 
     @Override
@@ -69,11 +69,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         for (String lang : langs)
             cols.append(lang).append(", ");
         String columns = cols.substring(0, cols.length() - 2); //to get rid of the last ", "
-        Log.d("--- getData columns---", columns);
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT source, " + columns + " FROM " + TABLE_NAME + " WHERE status = 0 ";
-        Log.d("--- getData columns2---", query);
         return db.rawQuery(query, null);
+    }
+
+    public void cleanData(){
+        // change all status to 1
+        // this is invoked when syncUp has been successful
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE " + TABLE_NAME + " SET status=1");
     }
 
     public boolean wordsTableIsEmpty(){

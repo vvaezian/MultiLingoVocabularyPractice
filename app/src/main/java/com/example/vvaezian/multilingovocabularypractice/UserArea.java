@@ -23,6 +23,12 @@ public class UserArea extends ActionBar {
         etGreetings.setText(msg);
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        HelperFunctions.syncUp(getApplicationContext());
+    }
+
     public void BtnTestClicked(View view) {
         Intent intent = new Intent(this, testPage.class);
         startActivity(intent);

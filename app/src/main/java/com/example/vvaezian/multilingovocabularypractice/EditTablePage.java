@@ -2,7 +2,6 @@ package com.example.vvaezian.multilingovocabularypractice;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,13 +21,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.google.cloud.translate.Translation;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Objects;
@@ -85,54 +78,11 @@ public class EditTablePage extends ActionBar {
 
         final DatabaseHelper userDB = HelperFunctions.getDataBaseHelper(this);
 
-        //testing sync
-        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonResponse = new JSONObject(response);
-                    boolean success = jsonResponse.getBoolean("success");
-
-                    if (success) {
-                        Toast.makeText(EditTablePage.this, "Synced Successfully", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(EditTablePage.this, "Syncing Failed", Toast.LENGTH_LONG).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        JSONObject dirtyRows = new JSONObject();
-        try {
-            dirtyRows.put("source", "cat");
-            dirtyRows.put("fr", "chat");
-            dirtyRows.put("de", "Katze");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JSONObject dirtyRows2 = new JSONObject();
-        try {
-            dirtyRows2.put("source", "dog");
-            dirtyRows2.put("fr", "chien");
-            dirtyRows2.put("de", "Hund");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JSONArray test = new JSONArray();
-        test.put(dirtyRows);
-        test.put(dirtyRows2);
-        String jsonString = test.toString();
-        Log.d("--- json ---", jsonString);
-
-        SyncWithSQLServerRequest syncRequest = new SyncWithSQLServerRequest("majid", jsonString, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(EditTablePage.this);
-        queue.add(syncRequest);
+        // getting user's languages from shared preferences
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String LoggedInUser = sp.getString("user","");
+        final String langsConcated = sp.getString(LoggedInUser,"");
+        final String[] langs = langsConcated.split(" ");
 
         // setting dropDown Spinner items
         final Spinner dropDownSpinner = (Spinner) findViewById(R.id.spSourceLang);
@@ -140,27 +90,6 @@ public class EditTablePage extends ActionBar {
                 R.array.languages_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropDownSpinner.setAdapter(adapter);
-
-        // getting user's languages from shared preferences
-        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String LoggedInUser = sp.getString("user","");
-        final String langsConcated = sp.getString(LoggedInUser,"");
-        final String[] langs = langsConcated.split(" ");
-
-        final String[] translations = new String[langs.length];
-
-        //testing getDirtyData
-        if (!userDB.wordsTableIsEmpty()) {
-            Cursor cursor = userDB.getDirtyData(langsConcated);
-            cursor.moveToFirst();
-            do {for (int i=0; i < cursor.getColumnCount(); i++)
-                    if (cursor.getString(i) != null)
-                        Log.d("out-cursor", cursor.getString(i));
-                    else
-                        Log.d("out-cursor", "null");
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
 
         // producing fields to hold translations
         final TableLayout tl = (TableLayout) findViewById(R.id.TranslatedLanguagesArea);
@@ -228,6 +157,8 @@ public class EditTablePage extends ActionBar {
 
         //saving the data
         Button btnSave = (Button) findViewById(R.id.btnSave);
+
+        final String[] translations = new String[langs.length];
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
