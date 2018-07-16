@@ -13,6 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 public class HelperFunctions  {
 
     public static String abbreviate(String langName){
@@ -75,8 +77,6 @@ public class HelperFunctions  {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     final boolean success = jsonResponse.getBoolean("success");
-                    final String allLangs = jsonResponse.getString("allLangs");
-                    final String tableCreated = jsonResponse.getString("tableCreated");
                     if (success) {
                         Log.d(" ----- sync ----", "success");
                         // setting status in local database to 1
@@ -131,14 +131,27 @@ public class HelperFunctions  {
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String LoggedInUser = sp.getString("user","");
         final String langsConcated = sp.getString(LoggedInUser,"");
+        final String[] langs = langsConcated.split(" ");
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONArray jsonResponse = new JSONArray(response);
+                    JSONObject jsonObj;
+                    for (int i=0; i < jsonResponse.length(); i++){
+                        jsonObj = jsonResponse.getJSONObject(i);
+                        final String[] translations = new String[langs.length];
+                        for (int j=0; j < langs.length; j++){
+                            translations[j] = jsonObj.getString(langs[j]);
+                        }
+                        Log.d(" ----- sync Down ----", Arrays.toString(translations));
+                        String sourceWord = jsonObj.getString("source");
+                        boolean isInserted = userDB.insertData(sourceWord, langs, translations, 1);
+                        if (isInserted)
+                            Log.d(" ----- sync Down ----", "inserted");
+                    }
 
-                    Log.d(" ----- sync Down ----", jsonResponse.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

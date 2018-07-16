@@ -173,7 +173,7 @@ public class EditTablePage extends ActionBar {
                     translations[i] = tv.getText().toString();
                 }
 
-                boolean isInserted = userDB.insertData(sourceWord, langs, translations);
+                boolean isInserted = userDB.insertData(sourceWord, langs, translations, 0);
                 if (isInserted) {
                     Toast.makeText(EditTablePage.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
 

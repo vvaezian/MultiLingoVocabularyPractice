@@ -44,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     final String TABLE_NAME = "WordsTable";
 
     // this function is used in 'EditTablePage'
-    public boolean insertData(String sourceText, String[] langs, String[] translations){
+    public boolean insertData(String sourceText, String[] langs, String[] translations, int status){
 
         // TODO: call getWritableDatabase() or getReadableDatabase() in a background thread,
         // such as with AsyncTask or IntentService, because they may be 'long-running'
@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("source", sourceText);
         for (int i=0; i< langs.length; i++)
             contentValues.put(langs[i], translations[i]);
-        contentValues.put("status", 0);
+        contentValues.put("status", status);
 
         // Insert the new row, returning the primary key value of the new row
         long result = db.insertWithOnConflict(TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE);
