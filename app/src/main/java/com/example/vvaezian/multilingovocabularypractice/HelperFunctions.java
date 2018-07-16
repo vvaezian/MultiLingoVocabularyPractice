@@ -129,7 +129,7 @@ public class HelperFunctions  {
 
         // getting user's languages from shared preferences
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        String LoggedInUser = sp.getString("user","");
+        final String LoggedInUser = sp.getString("user","");
         final String langsConcated = sp.getString(LoggedInUser,"");
         final String[] langs = langsConcated.split(" ");
 
@@ -139,6 +139,7 @@ public class HelperFunctions  {
                 try {
                     JSONArray jsonResponse = new JSONArray(response);
                     JSONObject jsonObj;
+                    boolean flag = true;
                     for (int i=0; i < jsonResponse.length(); i++){
                         jsonObj = jsonResponse.getJSONObject(i);
                         final String[] translations = new String[langs.length];
@@ -150,6 +151,13 @@ public class HelperFunctions  {
                         boolean isInserted = userDB.insertData(sourceWord, langs, translations, 1);
                         if (isInserted)
                             Log.d(" ----- sync Down ----", "inserted");
+                        else
+                            flag = false;
+                    }
+                    if (flag){
+                        SyncDownDeliveryRequest syncDownDeliveryRequest = new SyncDownDeliveryRequest(LoggedInUser);
+                        RequestQueue queue = Volley.newRequestQueue(context);
+                        queue.add(syncDownDeliveryRequest);
                     }
 
                 } catch (JSONException e) {
@@ -158,8 +166,8 @@ public class HelperFunctions  {
             }
         };
 
-        SyncDownRequest syncRequest = new SyncDownRequest(LoggedInUser, responseListener);
+        SyncDownRequest syncDownRequest = new SyncDownRequest(LoggedInUser, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(syncRequest);
+        queue.add(syncDownRequest);
     }
 }
