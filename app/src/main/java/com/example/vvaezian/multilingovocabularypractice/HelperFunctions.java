@@ -81,6 +81,10 @@ public class HelperFunctions  {
                         Log.d(" ----- sync ----", "success");
                         // setting status in local database to 1
                         userDB.cleanData();
+                        // writing in SharedPreferences that syncedUp was successful
+                        SharedPreferences.Editor prefEditor = sp.edit();
+                        prefEditor.putBoolean("syncedUp", true);
+                        prefEditor.apply();
                     } else {
                         Log.d(" ----- sync ----", "failed");
                     }

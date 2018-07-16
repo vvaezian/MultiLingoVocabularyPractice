@@ -174,8 +174,14 @@ public class EditTablePage extends ActionBar {
                 }
 
                 boolean isInserted = userDB.insertData(sourceWord, langs, translations);
-                if (isInserted)
+                if (isInserted) {
                     Toast.makeText(EditTablePage.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
+
+                    // writing in sharedPreference that a dirty rows added and syncUp is needed
+                    SharedPreferences.Editor prefEditor = sp.edit();
+                    prefEditor.putBoolean("syncedUp", false);
+                    prefEditor.apply();
+                }
                 else
                     Toast.makeText(EditTablePage.this, "Data Insertion Failed", Toast.LENGTH_LONG).show();
             }

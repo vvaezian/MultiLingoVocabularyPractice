@@ -1,8 +1,11 @@
 package com.example.vvaezian.multilingovocabularypractice;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,7 +29,12 @@ public class UserArea extends ActionBar {
     @Override
     public void onResume(){
         super.onResume();
-        HelperFunctions.syncUp(getApplicationContext());
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Boolean syncedUp = sp.getBoolean("syncedUp", false);
+        if (!syncedUp) {
+            Log.d("out", "Syncing ...");
+            HelperFunctions.syncUp(getApplicationContext());
+        }
     }
 
     public void BtnTestClicked(View view) {
