@@ -95,7 +95,6 @@ public class HelperFunctions  {
         };
 
         JSONArray test = new JSONArray();
-
         if (!userDB.wordsTableIsEmpty()) {
             Cursor cursor = userDB.getDirtyData(langsConcated);
             if ((cursor != null) && (cursor.getCount() > 0)) {
