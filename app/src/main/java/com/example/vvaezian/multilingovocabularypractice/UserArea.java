@@ -42,4 +42,7 @@ public class UserArea extends ActionBar {
         startActivity(intent);
     }
 
+    public void BtnSyncDownClicked(View view) {
+        HelperFunctions.syncDown(getApplicationContext());
+    }
 }

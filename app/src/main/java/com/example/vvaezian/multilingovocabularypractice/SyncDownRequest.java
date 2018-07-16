@@ -7,15 +7,14 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SyncWithSQLServerRequest extends StringRequest {
-    private static final String SYNC_REQUEST_URL = "https://vahidvaezian.000webhostapp.com/syncUp.php";
+public class SyncDownRequest extends StringRequest {
+    private static final String SYNC_REQUEST_URL = "https://vahidvaezian.000webhostapp.com/syncDown.php";
     private Map<String,String> params;
 
-    public SyncWithSQLServerRequest(String username, String jsonString, Response.Listener<String> listener) {
+    public SyncDownRequest(String username, Response.Listener<String> listener) {
         super(Request.Method.POST, SYNC_REQUEST_URL, listener, null);
         params = new HashMap<>();
-        params.put("username", username);
-        params.put("jsonString", jsonString);
+        params.put("LoggedInUser", username);
     }
 
     @Override

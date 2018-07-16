@@ -119,7 +119,33 @@ public class HelperFunctions  {
 
         String jsonString = test.toString();
 
-        SyncWithSQLServerRequest syncRequest = new SyncWithSQLServerRequest(LoggedInUser, jsonString, responseListener);
+        SyncUpRequest syncRequest = new SyncUpRequest(LoggedInUser, jsonString, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(syncRequest);
+    }
+    public static void syncDown(final Context context) {
+        /* Updating the local database with dirty rows from remote database*/
+        final DatabaseHelper userDB = HelperFunctions.getDataBaseHelper(context);
+
+        // getting user's languages from shared preferences
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String LoggedInUser = sp.getString("user","");
+        final String langsConcated = sp.getString(LoggedInUser,"");
+
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jsonResponse = new JSONArray(response);
+
+                    Log.d(" ----- sync Down ----", jsonResponse.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        SyncDownRequest syncRequest = new SyncDownRequest(LoggedInUser, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(syncRequest);
     }
