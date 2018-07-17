@@ -24,10 +24,13 @@ public class UserArea extends ActionBar {
         String username = intent.getStringExtra("username");
         String msg = "Welcome " + username;
         etGreetings.setText(msg);
+
+        // updating local database with dirty rows from the remote
+        HelperFunctions.syncDown(getApplicationContext());
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Boolean syncedUp = sp.getBoolean("syncedUp", false);
@@ -40,9 +43,5 @@ public class UserArea extends ActionBar {
     public void BtnTestClicked(View view) {
         Intent intent = new Intent(this, testPage.class);
         startActivity(intent);
-    }
-
-    public void BtnSyncDownClicked(View view) {
-        HelperFunctions.syncDown(getApplicationContext());
     }
 }

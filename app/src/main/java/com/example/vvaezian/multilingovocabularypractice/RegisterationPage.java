@@ -46,21 +46,24 @@ public class RegisterationPage extends AppCompatActivity {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
+                            boolean avail = jsonResponse.getBoolean("available");
 
-                            //TODO: If username not available, inform the user
                             if (success) {
                                 spinner.setVisibility(View.GONE);
                                 Intent intent = new Intent(RegisterationPage.this, LoginPage.class);
                                 RegisterationPage.this.startActivity(intent);
                                 finish();  // prevent getting back to this page by pressing 'back' button
-                            } else {
+                            }
+                            else {
                                 spinner.setVisibility(View.GONE);
+                                String msg = avail ? "Registeration Failed" : "Username is taken. Try a different username.";
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterationPage.this);
-                                builder.setMessage("Registeration Failed")
+                                builder.setMessage(msg)
                                         .setNegativeButton("Retry", null)
                                         .create()
                                         .show();
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

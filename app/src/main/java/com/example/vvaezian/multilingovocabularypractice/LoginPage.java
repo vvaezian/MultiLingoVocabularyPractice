@@ -29,7 +29,6 @@ public class LoginPage extends AppCompatActivity {
 
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
-        final Button btnRegister = (Button) findViewById(R.id.BtnReg);
         final Button btnLogin = (Button) findViewById(R.id.BtnLogin);
 
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

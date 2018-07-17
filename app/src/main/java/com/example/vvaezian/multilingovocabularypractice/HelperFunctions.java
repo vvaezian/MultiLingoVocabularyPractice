@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 public class HelperFunctions  {
-
+    //TODO: Generalize for more languages
     public static String abbreviate(String langName){
         String output = "";
         switch (langName) {
@@ -122,8 +122,11 @@ public class HelperFunctions  {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(syncRequest);
     }
+
+
     public static void syncDown(final Context context) {
-        /* Updating the local database with dirty rows from remote database*/
+        /* Updates the local database with dirty rows from the remote database*/
+
         final DatabaseHelper userDB = HelperFunctions.getDataBaseHelper(context);
 
         // getting user's languages from shared preferences
@@ -138,21 +141,25 @@ public class HelperFunctions  {
                 try {
                     JSONArray jsonResponse = new JSONArray(response);
                     JSONObject jsonObj;
-                    boolean flag = true;
+                    boolean flag = true; // to check if all rows inserted successfully
+
+                    Log.d("------ syncDown ------", "Starting to process data");
+
                     for (int i=0; i < jsonResponse.length(); i++){
                         jsonObj = jsonResponse.getJSONObject(i);
                         final String[] translations = new String[langs.length];
                         for (int j=0; j < langs.length; j++){
                             translations[j] = jsonObj.getString(langs[j]);
                         }
-                        Log.d(" ----- sync Down ----", Arrays.toString(translations));
+                        Log.d(" ----- syncDown ----", Arrays.toString(translations));
                         String sourceWord = jsonObj.getString("source");
                         boolean isInserted = userDB.insertData(sourceWord, langs, translations, 1);
                         if (isInserted)
-                            Log.d(" ----- sync Down ----", "inserted");
+                            Log.d(" ----- syncDown ----", "inserted");
                         else
                             flag = false;
                     }
+
                     if (flag){
                         SyncDownDeliveryRequest syncDownDeliveryRequest = new SyncDownDeliveryRequest(LoggedInUser);
                         RequestQueue queue = Volley.newRequestQueue(context);
