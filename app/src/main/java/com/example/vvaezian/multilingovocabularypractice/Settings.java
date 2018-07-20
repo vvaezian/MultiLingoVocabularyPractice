@@ -1,5 +1,6 @@
 package com.example.vvaezian.multilingovocabularypractice;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -74,11 +75,16 @@ public class Settings extends AppCompatActivity {
                     Toast.makeText(Settings.this, "Settings Saved", Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(Settings.this, "Saving Failed!", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(Settings.this, UserArea.class);
+                Settings.this.startActivity(intent);
+                finish();  // prevent getting back to this page by pressing 'back' button
             }
         });
+
     }
     // this is needed.
     public void onCheckboxClicked(View view) {
-        // Clicking the checkboxes isn't gonna do anything
+        // Clicking the checkboxes isn't gonna trigger any action
     }
 }

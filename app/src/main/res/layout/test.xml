@@ -13,35 +13,6 @@
 
         <include layout="@layout/my_toolbar" />
 
-        <RelativeLayout
-            android:id="@+id/noLanguageArea"
-            android:layout_width="fill_parent"
-            android:layout_height="155dp"
-            android:padding="10dip">
-
-            <TextView
-                android:id="@+id/tvNoLanguage"
-                android:layout_width="331dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="49dp"
-                android:gravity="center"
-                android:text="You have not added any words yet"
-                android:textAllCaps="false"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/btnAddWords"
-                android:layout_width="wrap_content"
-                android:layout_height="38dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="12dp"
-                android:text="+ Add Words"
-                android:textSize="12sp" />
-        </RelativeLayout>
-
         <TableLayout
             android:id="@+id/LanguageFlagsArea"
             android:layout_width="match_parent"

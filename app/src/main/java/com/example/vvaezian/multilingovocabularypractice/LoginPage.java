@@ -73,7 +73,6 @@ public class LoginPage extends AppCompatActivity {
                                 prefEditor.apply();
 
                                 Intent intent = new Intent(LoginPage.this, UserArea.class);
-                                intent.putExtra("username", username);  // we use this extra info in the 'UserArea' page
                                 LoginPage.this.startActivity(intent);
                                 finish();  // prevent getting back to this page by pressing 'back' button
 

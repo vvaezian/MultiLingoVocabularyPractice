@@ -63,8 +63,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public Cursor getDirtyData(String columnsConcated) {
-        String [] langs = columnsConcated.split(" ");
+
+    public Cursor getAllData(String[] langs){
+        StringBuilder cols = new StringBuilder();
+        for (String lang : langs)
+            cols.append(lang).append(", ");
+        String columns = cols.substring(0, cols.length() - 2); //to get rid of the last ", "
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT source, " + columns + " FROM " + TABLE_NAME;
+        return db.rawQuery(query, null);
+    }
+
+    public Cursor getDirtyData(String[] langs) {
+        // retrieves rows with status 0 to be sent to the remote server
+
         StringBuilder cols = new StringBuilder();
         for (String lang : langs)
             cols.append(lang).append(", ");

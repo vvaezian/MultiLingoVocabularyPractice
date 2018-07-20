@@ -13,26 +13,117 @@
 
     <TextView
         android:id="@+id/tvGreet"
-        android:layout_width="120dp"
-        android:layout_height="29dp"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
 
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="66dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="64dp"
         android:text="Greetings"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="19dp" />
+        android:layout_marginLeft="45dp" />
 
-    <Button
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_alignTop="@+id/tvGreet"
-        android:layout_centerHorizontal="true"
-        android:onClick="BtnTestClicked"
-        android:text="Go to Test"
-        android:textAllCaps="false"
-        android:textSize="12sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="437dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvGreet"
+        android:layout_marginTop="7dp"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/CLlangsStatArea"
+            android:layout_width="match_parent"
+            android:layout_height="111dp">
+
+            <TextView
+                android:id="@+id/tvLangsStat"
+                android:layout_width="296dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="14dp"
+                android:text="langsStats"
+                app:layout_constraintBottom_toTopOf="@+id/btnSelectLangs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnSelectLangs"
+                android:layout_width="137dp"
+                android:layout_height="38dp"
+                android:layout_marginBottom="17dp"
+                android:layout_marginEnd="121dp"
+                android:layout_marginLeft="126dp"
+                android:layout_marginRight="121dp"
+                android:layout_marginStart="126dp"
+                android:onClick="BtnSelectLangsClicked"
+                android:text="Select Languages"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/CLwordsStatsArea"
+            android:layout_width="match_parent"
+            android:layout_height="111dp">
+
+            <TextView
+                android:id="@+id/tvWordsStats"
+                android:layout_width="225dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="16dp"
+                android:text="wordsStats"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnAddWords"
+                android:layout_width="105dp"
+                android:layout_height="38dp"
+                android:layout_marginBottom="13dp"
+                android:layout_marginEnd="147dp"
+                android:layout_marginLeft="147dp"
+                android:layout_marginRight="147dp"
+                android:layout_marginStart="147dp"
+                android:layout_marginTop="12dp"
+                android:onClick="BtnAddWordsClicked"
+                android:text="+ Add Words"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvWordsStats"
+                app:layout_constraintVertical_bias="1.0" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/CLgoToEditTablePageArea"
+            android:layout_width="match_parent"
+            android:layout_height="111dp">
+
+            <Button
+                android:id="@+id/test"
+                android:layout_width="100dp"
+                android:layout_height="38dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:onClick="BtnTestClicked"
+                android:text="Go to Test"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
 </RelativeLayout>

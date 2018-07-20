@@ -1,6 +1,7 @@
 package com.example.vvaezian.multilingovocabularypractice;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -184,6 +185,10 @@ public class EditTablePage extends ActionBar {
                 }
                 else
                     Toast.makeText(EditTablePage.this, "Data Insertion Failed", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(EditTablePage.this, UserArea.class);
+                EditTablePage.this.startActivity(intent);
+                finish();  // prevent getting back to this page by pressing 'back' button
             }
         });
     }

@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 public class HelperFunctions  {
-    //TODO: Generalize for more languages
+    //TODO: Generalize for more languages (check other files to see if they need change regarding this)
     public static String abbreviate(String langName){
         String output = "";
         switch (langName) {
@@ -70,6 +70,7 @@ public class HelperFunctions  {
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String LoggedInUser = sp.getString("user","");
         final String langsConcated = sp.getString(LoggedInUser,"");
+        String [] langs = langsConcated.split(" ");
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -96,7 +97,7 @@ public class HelperFunctions  {
 
         JSONArray test = new JSONArray();
         if (!userDB.wordsTableIsEmpty()) {
-            Cursor cursor = userDB.getDirtyData(langsConcated);
+            Cursor cursor = userDB.getDirtyData(langs);
             if ((cursor != null) && (cursor.getCount() > 0)) {
                 cursor.moveToFirst();
                 do {
@@ -176,4 +177,10 @@ public class HelperFunctions  {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(syncDownRequest);
     }
+
+    //TODO access sharedPrefs and DatabaseHelper outside onCreate using this type of function to avoid repititive calls to them
+    public static SharedPreferences getPref(Context Context){
+        return PreferenceManager.getDefaultSharedPreferences(Context);
+    }
+
 }
