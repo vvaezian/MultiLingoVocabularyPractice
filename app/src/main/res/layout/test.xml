@@ -36,10 +36,11 @@
             android:padding="5dp">
 
             <Button
-                android:id="@+id/BtnEditLanguages"
+                android:id="@+id/BtnNext"
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
-                android:text="Edit Languages"
+                android:onClick="BtnNextClicked"
+                android:text="Next ->"
                 android:textSize="10sp" />
         </LinearLayout>
     </LinearLayout>

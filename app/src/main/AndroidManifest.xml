@@ -24,7 +24,7 @@
         <activity android:name=".EditTablePage" />
         <activity android:name=".testPage" />
         <activity android:name=".ActionBar" />
-        <activity android:name=".Settings"></activity>
+        <activity android:name=".Settings" />
     </application>
 
 </manifest>

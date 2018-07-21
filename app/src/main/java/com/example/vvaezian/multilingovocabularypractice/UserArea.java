@@ -109,4 +109,5 @@ public class UserArea extends ActionBar {
         Intent intent = new Intent(this, testPage.class);
         startActivity(intent);
     }
+
 }
