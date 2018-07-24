@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".EditTablePage">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/my_toolbar" />
+    <include layout="@layout/my_toolbar" />
 
     <ProgressBar
         android:id="@+id/TranslateProgressspinner"
@@ -22,10 +20,10 @@
         android:layout_marginLeft="154dp"
         android:layout_marginRight="154dp"
         android:layout_marginStart="154dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etInput"
@@ -37,14 +35,14 @@
         android:layout_marginLeft="44dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Enter a Word"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/btnTranslate"
-        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/btnTranslate"
@@ -61,7 +59,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
@@ -121,11 +119,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="44dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="140dp"
         android:background="@drawable/spinner_dropdown_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/include">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Spinner
             android:id="@+id/spSourceLang"
@@ -147,12 +145,12 @@
         android:layout_marginLeft="48dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="140dp"
         android:gravity="center"
         android:text="Source Language:"
         app:layout_constraintEnd_toStartOf="@+id/relativeLayout2"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

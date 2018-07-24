@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
+    <include layout="@layout/my_toolbar" />
+
     <TextView
         android:id="@+id/tvAddLanguage"
         android:layout_width="306dp"

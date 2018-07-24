@@ -86,6 +86,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+    public long getRowCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+        db.close();
+        return count;
+    }
+
     public void cleanData(){
         // change all status to 1
         // this is invoked when syncUp has been successful
@@ -102,5 +109,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Integer deleteData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, "ID = ?", new String[] {id} );
+    }
+
+    public Integer deleteRow(String source) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_NAME, "source = ?", new String[] {source} );
     }
 }

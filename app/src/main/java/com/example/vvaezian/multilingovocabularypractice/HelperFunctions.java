@@ -3,8 +3,15 @@ package com.example.vvaezian.multilingovocabularypractice;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -13,7 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class HelperFunctions  {
     //TODO: Generalize for more languages (check other files to see if they need change regarding this)
@@ -176,6 +185,91 @@ public class HelperFunctions  {
         SyncDownRequest syncDownRequest = new SyncDownRequest(LoggedInUser, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(syncDownRequest);
+    }
+
+    public static void Populate(ArrayList<Integer> ShuffledIndexes, Cursor cursor, TableLayout tl, final Context context){
+
+        final int fontSize = 30;
+
+        // getting user's languages from shared preferences
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        final String LoggedInUser = sp.getString("user","");
+        final String langsConcated = sp.getString(LoggedInUser,"");
+        final String[] langs = langsConcated.split(" ");
+
+        cursor.moveToPosition(ShuffledIndexes.get(0));
+        final HashMap<String, Object> texts = new HashMap<>();
+        for (int i = 0; i < cursor.getColumnCount(); i++) {
+            if (cursor.getString(i) != null)
+                texts.put(cursor.getColumnName(i), cursor.getString(i));
+            else
+                texts.put(cursor.getColumnName(i), "Not Defined");
+        }
+        Log.d("--- texts keys ---", texts.keySet().toString());
+        Log.d("--- texts values ---", texts.values().toString());
+
+        // programmatically create fields to hold flags and translations
+
+        // creating source field
+        TableRow row = new TableRow(context);
+        TableLayout.LayoutParams tvParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
+        tvParams.setMargins(0, 40, 0, 40);
+        row.setLayoutParams(tvParams);
+
+        TextView tv = new TextView(context);
+        tv.setText(texts.get("source").toString());
+        tv.setTextColor(Color.BLACK);
+        tv.setTextSize(fontSize);
+        tv.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
+
+
+        // Add the tv to row.
+        row.addView(tv);
+
+        // Add the row to TableLayout.
+        tl.addView(row, tvParams);
+
+        TableRow[] rows = new TableRow[langs.length];
+        final TextView[] buttons = new TextView[langs.length];
+
+        for (int i=0; i < langs.length; i++){
+
+            final String langsElement = langs[i];  // the language at index i.
+
+            // Create a new row to be added.
+            rows[i] = new TableRow(context);
+            TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 40, 0, 40);
+            rows[i].setLayoutParams(params);
+
+            // Create a button to be the row-content.
+            buttons[i] = new Button(context);
+
+            // putting flag of the language at index 'i', in the background of the button
+            int resID = context.getResources().getIdentifier(langsElement , "drawable", context.getPackageName()); // resID is id of the resource with the name in langsElement
+            buttons[i].setBackgroundResource(resID);
+
+            // clicking the button makes the flag transparent and the text visible
+            buttons[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button button = (Button) v;
+
+                    int resID = context.getResources().getIdentifier(langsElement + "_transparent" , "drawable", context.getPackageName());
+                    button.setBackgroundResource(resID);
+                    button.setText(texts.get(langsElement).toString());
+                    button.setTextColor(Color.BLACK);
+                    button.setTextSize(fontSize);
+                    button.setTransformationMethod(null); // preventing all caps
+                }
+            });
+
+            // Add the button to row.
+            rows[i].addView(buttons[i]);
+
+            // Add the row to TableLayout.
+            tl.addView(rows[i], params);
+        }
     }
 
     //TODO access sharedPrefs and DatabaseHelper outside onCreate using this type of function to avoid repititive calls to them

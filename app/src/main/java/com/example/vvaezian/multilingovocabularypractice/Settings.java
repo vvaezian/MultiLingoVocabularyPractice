@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,12 +13,15 @@ import android.widget.Toast;
 
 import static com.example.vvaezian.multilingovocabularypractice.HelperFunctions.abbreviate;
 
-public class Settings extends AppCompatActivity {
+public class Settings extends ActionBar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // getting user's languages from shared preferences
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

@@ -21,10 +21,30 @@
         </activity>
         <activity android:name=".RegisterationPage" />
         <activity android:name=".UserArea" />
-        <activity android:name=".EditTablePage" />
-        <activity android:name=".testPage" />
+        <activity
+            android:name=".EditTablePage"
+            android:label="Add Words"
+            android:parentActivityName=".UserArea">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UserArea" />
+        </activity>
+        <activity android:name=".testPage"
+            android:label="Practice"
+            android:parentActivityName=".UserArea">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UserArea" />
+        </activity>
+
         <activity android:name=".ActionBar" />
-        <activity android:name=".Settings" />
+        <activity android:name=".Settings"
+            android:label="Settings"
+            android:parentActivityName=".UserArea">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UserArea" />
+        </activity>
     </application>
 
 </manifest>

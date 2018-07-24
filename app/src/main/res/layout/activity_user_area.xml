@@ -18,11 +18,10 @@
 
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="73dp"
         android:text="Greetings"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="45dp" />
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,17 +35,20 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/CLlangsStatArea"
             android:layout_width="match_parent"
-            android:layout_height="111dp">
+            android:layout_height="138dp">
 
             <TextView
                 android:id="@+id/tvLangsStat"
                 android:layout_width="296dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
                 android:layout_marginLeft="45dp"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="14dp"
                 android:text="langsStats"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:typeface="sans"
                 app:layout_constraintBottom_toTopOf="@+id/btnSelectLangs"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -60,27 +62,32 @@
                 android:layout_marginLeft="126dp"
                 android:layout_marginRight="121dp"
                 android:layout_marginStart="126dp"
+                android:layout_marginTop="9dp"
                 android:onClick="BtnSelectLangsClicked"
                 android:text="Select Languages"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLangsStat" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/CLwordsStatsArea"
             android:layout_width="match_parent"
-            android:layout_height="111dp">
+            android:layout_height="138dp">
 
             <TextView
                 android:id="@+id/tvWordsStats"
-                android:layout_width="225dp"
-                android:layout_height="25dp"
+                android:layout_width="299dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp"
                 android:layout_marginStart="45dp"
                 android:layout_marginTop="16dp"
                 android:text="wordsStats"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:typeface="sans"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,34 +100,36 @@
                 android:layout_marginLeft="147dp"
                 android:layout_marginRight="147dp"
                 android:layout_marginStart="147dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="9dp"
                 android:onClick="BtnAddWordsClicked"
                 android:text="+ Add Words"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvWordsStats"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.323" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/CLgoToEditTablePageArea"
             android:layout_width="match_parent"
-            android:layout_height="111dp">
+            android:layout_height="212dp">
 
             <Button
                 android:id="@+id/test"
-                android:layout_width="100dp"
-                android:layout_height="38dp"
+                android:layout_width="219dp"
+                android:layout_height="62dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="44dp"
                 android:onClick="BtnTestClicked"
-                android:text="Go to Test"
+                android:text="Start Practicing"
                 android:textAllCaps="false"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
