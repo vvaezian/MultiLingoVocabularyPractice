@@ -207,7 +207,7 @@ public class EditTablePage extends ActionBar {
                             if (mToast == null) { // Initialize toast if needed
                                 mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
                             }
-                            mToast.setText("Data Inserted In Your Database Successfully");
+                            mToast.setText("Data Saved In Your Database");
                             mToast.show();
 
                             // writing in sharedPreference that a dirty rows added and syncUp is needed
@@ -219,12 +219,9 @@ public class EditTablePage extends ActionBar {
                             if (mToast == null) { // Initialize toast if needed
                                 mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
                             }
-                            mToast.setText("Data Insertion Failed!");
+                            mToast.setText("Saving Failed!");
                             mToast.show();
                         }
-                        //Intent intent = new Intent(EditTablePage.this, UserArea.class);
-                        //EditTablePage.this.startActivity(intent);
-                        //finish();  // prevent getting back to this page by pressing 'back' button
                     }
                 }
             }

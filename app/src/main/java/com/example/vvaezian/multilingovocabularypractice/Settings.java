@@ -30,9 +30,18 @@ public class Settings extends ActionBar {
         final String[] langs = langsConcated.split(" ");
 
         // making the user's languages checked
-        ConstraintLayout checkBoxesArea = (ConstraintLayout) findViewById(R.id.CLcheckBoxesArea);
+        ConstraintLayout checkBoxesArea = (ConstraintLayout) findViewById(R.id.CLcheckBoxesArea1);
         for (int i=0; i < checkBoxesArea.getChildCount(); i++){
             CheckBox cb = (CheckBox) checkBoxesArea.getChildAt(i);
+            // the method abbreviate is defined in HelperFunctions class (it has been imported)
+            String cbText = abbreviate(cb.getText().toString());
+            for (String lang:langs)
+                if (cbText.equals(lang))
+                    cb.setChecked(true);
+        }
+        ConstraintLayout checkBoxesArea2 = (ConstraintLayout) findViewById(R.id.CLcheckBoxesArea2);
+        for (int i=0; i < checkBoxesArea2.getChildCount(); i++){
+            CheckBox cb = (CheckBox) checkBoxesArea2.getChildAt(i);
             // the method abbreviate is defined in HelperFunctions class (it has been imported)
             String cbText = abbreviate(cb.getText().toString());
             for (String lang:langs)
@@ -51,6 +60,14 @@ public class Settings extends ActionBar {
                 CheckBox cbIt = (CheckBox) findViewById(R.id.cbIt);
                 CheckBox cbGer = (CheckBox) findViewById(R.id.cbGer);
                 CheckBox cbSp = (CheckBox) findViewById(R.id.cbSp);
+                CheckBox cbNl = (CheckBox) findViewById(R.id.cbNl);
+                CheckBox cbChS = (CheckBox) findViewById(R.id.cbZh_CN);
+                CheckBox cbChT = (CheckBox) findViewById(R.id.cbZh_TW);
+                CheckBox cbAr = (CheckBox) findViewById(R.id.cbAr);
+                CheckBox cbFa = (CheckBox) findViewById(R.id.cbFa);
+                CheckBox cbHi = (CheckBox) findViewById(R.id.cbHi);
+                CheckBox cbPt = (CheckBox) findViewById(R.id.cbPt);
+
                 if (cbEn.isChecked()){
                     langs += abbreviate(cbEn.getText().toString()) + " ";
                 }
@@ -65,6 +82,27 @@ public class Settings extends ActionBar {
                 }
                 if (cbSp.isChecked()){
                     langs += abbreviate(cbSp.getText().toString()) + " ";
+                }
+                if (cbNl.isChecked()){
+                    langs += abbreviate(cbNl.getText().toString()) + " ";
+                }
+                if (cbChS.isChecked()){
+                    langs += abbreviate(cbChS.getText().toString()) + " ";
+                }
+                if (cbChT.isChecked()){
+                    langs += abbreviate(cbChT.getText().toString()) + " ";
+                }
+                if (cbAr.isChecked()){
+                    langs += abbreviate(cbAr.getText().toString()) + " ";
+                }
+                if (cbFa.isChecked()){
+                    langs += abbreviate(cbFa.getText().toString()) + " ";
+                }
+                if (cbHi.isChecked()){
+                    langs += abbreviate(cbHi.getText().toString()) + " ";
+                }
+                if (cbPt.isChecked()){
+                    langs += abbreviate(cbPt.getText().toString()) + " ";
                 }
 
                 //Adding selected languages to the Shared Preferences

@@ -4,11 +4,19 @@
 
     <string-array name="languages_array">
         <item>Auto-Detect</item>
+        <item>Arabic</item>
+        <item>Chinese (Simplified)</item>
+        <item>Chinese (Traditional)</item>
+        <item>Dutch</item>
         <item>English</item>
         <item>French</item>
         <item>German</item>
+        <item>Hindi</item>
         <item>Italian</item>
+        <item>Persian</item>
+        <item>Portuguese</item>
         <item>Spanish</item>
+
     </string-array>
 
 </resources>

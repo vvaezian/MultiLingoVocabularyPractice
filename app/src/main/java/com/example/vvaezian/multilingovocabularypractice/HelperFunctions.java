@@ -40,7 +40,20 @@ public class HelperFunctions  {
                 break;
             case "Italian": output = "it";
                 break;
-            //TODO think of a default value to add
+            case "Arabic": output = "ar";
+                break;
+            case "Chinese (Simplified)": output = "zh-CN";
+                break;
+            case "Chinese (Traditional)": output = "zh-TW";
+                break;
+            case "Dutch": output = "nl";
+                break;
+            case "Hindi": output = "hi";
+                break;
+            case "Persian": output = "fa";
+                break;
+            case "Portuguese": output = "pt";
+                break;
         }
         return output;
     }
@@ -57,6 +70,20 @@ public class HelperFunctions  {
             case "es": output = "Spanish";
                 break;
             case "it": output = "Italian";
+                break;
+            case "ar": output = "Arabic";
+                break;
+            case "zh-CN": output = "Chinese (Simplified)";
+                break;
+            case "zh-TW": output = "Chinese (Traditional)";
+                break;
+            case "nl": output = "Dutch";
+                break;
+            case "hi": output = "Hindi";
+                break;
+            case "fa": output = "Persian";
+                break;
+            case "pt": output = "Portuguese";
                 break;
         }
         return output;
@@ -276,6 +303,8 @@ public class HelperFunctions  {
         }
     }
 
+    //TODO: turn toast-making to a function like this
+    // (it seems the problem with this func is that we need to somwhow pass mToast by reference
     public static void makeToast(String msg, Toast mToast, Context mContext){
         if (mToast == null) { // Initialize toast if needed
             mToast = Toast.makeText(mContext, "", Toast.LENGTH_LONG);

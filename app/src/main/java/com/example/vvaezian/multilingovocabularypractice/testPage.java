@@ -166,7 +166,6 @@ public class testPage extends ActionBar {
                         }
                     }
                     else {
-                        //TODO: turn toast-making to a function in HelperFunctions
                         // toast is defined in this way so that subsequent toasts don't have to wait for previous toast to finish
                         if (mToast == null) { // Initialize toast if needed
                             mToast = Toast.makeText(testPage.this, "", Toast.LENGTH_LONG);
