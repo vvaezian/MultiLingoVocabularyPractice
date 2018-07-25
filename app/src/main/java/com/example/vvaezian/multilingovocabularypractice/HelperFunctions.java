@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -212,7 +213,7 @@ public class HelperFunctions  {
 
         // creating source field
         TableRow row = new TableRow(context);
-        TableLayout.LayoutParams tvParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
+        TableLayout.LayoutParams tvParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT);
         tvParams.setMargins(0, 40, 0, 40);
         row.setLayoutParams(tvParams);
 
@@ -222,13 +223,15 @@ public class HelperFunctions  {
         tv.setTextSize(fontSize);
         tv.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
 
-
         // Add the tv to row.
         row.addView(tv);
 
         // Add the row to TableLayout.
         tl.addView(row, tvParams);
 
+        // </creating source field>
+
+        // creating flags with translations
         TableRow[] rows = new TableRow[langs.length];
         final TextView[] buttons = new TextView[langs.length];
 
@@ -238,7 +241,7 @@ public class HelperFunctions  {
 
             // Create a new row to be added.
             rows[i] = new TableRow(context);
-            TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT,TableLayout.LayoutParams.WRAP_CONTENT);
+            TableLayout.LayoutParams params = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 40, 0, 40);
             rows[i].setLayoutParams(params);
 
@@ -261,6 +264,7 @@ public class HelperFunctions  {
                     button.setTextColor(Color.BLACK);
                     button.setTextSize(fontSize);
                     button.setTransformationMethod(null); // preventing all caps
+                    button.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
                 }
             });
 
@@ -270,6 +274,14 @@ public class HelperFunctions  {
             // Add the row to TableLayout.
             tl.addView(rows[i], params);
         }
+    }
+
+    public static void makeToast(String msg, Toast mToast, Context mContext){
+        if (mToast == null) { // Initialize toast if needed
+            mToast = Toast.makeText(mContext, "", Toast.LENGTH_LONG);
+        }
+        mToast.setText(msg);
+        mToast.show();
     }
 
     //TODO access sharedPrefs and DatabaseHelper outside onCreate using this type of function to avoid repititive calls to them

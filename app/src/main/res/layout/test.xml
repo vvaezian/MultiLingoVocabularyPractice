@@ -16,7 +16,7 @@
 
         <TableLayout
             android:id="@+id/LanguageFlagsArea"
-            android:layout_width="273dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
             android:layout_marginLeft="50sp"
@@ -27,8 +27,9 @@
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
             android:paddingTop="0dp"
-            android:stretchColumns="*" />
+            android:stretchColumns="*" >
 
+        </TableLayout>
         <android.support.constraint.ConstraintLayout
             android:id="@+id/editLanguageBox"
             android:layout_width="fill_parent"

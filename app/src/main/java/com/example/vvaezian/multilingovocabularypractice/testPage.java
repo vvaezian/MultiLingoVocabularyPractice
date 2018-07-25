@@ -26,6 +26,7 @@ public class testPage extends ActionBar {
 
     Cursor cursor;
     ArrayList<Integer> ShuffledIndexes;
+    Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public class testPage extends ActionBar {
                 Log.d("--- shuffled ---", ShuffledIndexes.toString());
 
                 TableLayout tl = (TableLayout) findViewById(R.id.LanguageFlagsArea);
+                // to make the items word-wrap
+                tl.setColumnShrinkable(0, true);
+                tl.setColumnStretchable(0, true);
 
                 HelperFunctions.Populate(ShuffledIndexes, cursor, tl, getApplicationContext());
                 ShuffledIndexes.remove(0); // to avoid using this index again
@@ -81,7 +85,7 @@ public class testPage extends ActionBar {
         // clear the page
         tl.removeAllViews();
 
-        if (ShuffledIndexes.size() > 0) {
+        if (ShuffledIndexes.size() > 0) { // if there are any records
 
             // Handler will make the inside code be executed with delay
             Handler handler = new Handler();
@@ -162,7 +166,14 @@ public class testPage extends ActionBar {
                         }
                     }
                     else {
-                        Toast.makeText(testPage.this, "You don't have any words in your database!", Toast.LENGTH_LONG).show();
+                        //TODO: turn toast-making to a function in HelperFunctions
+                        // toast is defined in this way so that subsequent toasts don't have to wait for previous toast to finish
+                        if (mToast == null) { // Initialize toast if needed
+                            mToast = Toast.makeText(testPage.this, "", Toast.LENGTH_LONG);
+                        }
+                        mToast.setText("You don't have any words in your database!");
+                        mToast.show();
+
                     }
                 }
             });
@@ -212,18 +223,30 @@ public class testPage extends ActionBar {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
                         if (userDB.deleteRow(cursor.getString(0)) == 1) {
-                            Toast.makeText(testPage.this, "Deleted Successfully", Toast.LENGTH_LONG).show();
+                            //make a success toast
+                            if (mToast == null) { // Initialize toast if needed
+                                mToast = Toast.makeText(testPage.this, "", Toast.LENGTH_LONG);
+                            }
+                            mToast.setText("Deleted Successfully");
+                            mToast.show();
+
                             //go to next record
                             Button btnNext = (Button) findViewById(R.id.BtnNext);
                             btnNext.performClick();
                             //TODO define btnnext at the top
                         }
-                        else
-                            Toast.makeText(testPage.this, "Deletion Failed!", Toast.LENGTH_LONG).show();
+                        else {
+                            // make a failure toast
+                            if (mToast == null) { // Initialize toast if needed
+                                mToast = Toast.makeText(testPage.this, "", Toast.LENGTH_LONG);
+                            }
+                            mToast.setText("Deletion Failed!");
+                            mToast.show();
+                        }
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
-                        //Do your No progress
+                        //Do nothing if 'no' was selected
                         break;
                 }
             }

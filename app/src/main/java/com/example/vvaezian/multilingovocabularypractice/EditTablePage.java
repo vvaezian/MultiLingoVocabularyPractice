@@ -35,6 +35,7 @@ public class EditTablePage extends ActionBar {
 
     GoogleTranslateAPIInterface apiInterface;
     private ProgressBar loadingSpinner;
+    Toast mToast;
 
     public void translateWord(String query, String source, String target, final EditText et) {
         /* Translates 'query' into 'target' language, and shows it in the et EditText */
@@ -167,9 +168,15 @@ public class EditTablePage extends ActionBar {
             public void onClick(View v) {
 
                 String sourceWord = etInput.getText().toString();
-                etInput.setText("");
-                if (sourceWord.equals(""))
-                    Toast.makeText(EditTablePage.this, "'source' field is empty.", Toast.LENGTH_LONG).show();
+
+                if (sourceWord.equals("")) {
+                    // make a toast
+                    if (mToast == null) { // Initialize toast if needed
+                        mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
+                    }
+                    mToast.setText("'source' field is empty.");
+                    mToast.show();
+                }
                 else {
                     // looping through TextViews to get the final version of translated words (user may edit the translated words before save)
                     boolean flag = true; // checking if all fields are empty
@@ -183,21 +190,38 @@ public class EditTablePage extends ActionBar {
                         tv.setText("");
                     }
 
-                    if (flag)
-                        Toast.makeText(EditTablePage.this, "No translation is given.", Toast.LENGTH_LONG).show();
-                    else {
+                    if (flag){
+                        // making a toast
+                        if (mToast == null) { // Initialize toast if needed
+                            mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
+                        }
+                        mToast.setText("No Translation Is Given");
+                        mToast.show();
+                    }
 
+                    else {
                         boolean isInserted = userDB.insertData(sourceWord, langs, translations, 0);
                         if (isInserted) {
-                            Toast.makeText(EditTablePage.this, "Data Inserted Successfully", Toast.LENGTH_LONG).show();
+                            etInput.setText("");
+                            // making a toast
+                            if (mToast == null) { // Initialize toast if needed
+                                mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
+                            }
+                            mToast.setText("Data Inserted In Your Database Successfully");
+                            mToast.show();
 
                             // writing in sharedPreference that a dirty rows added and syncUp is needed
                             SharedPreferences.Editor prefEditor = sp.edit();
                             prefEditor.putBoolean("syncedUp", false);
                             prefEditor.apply();
-                        } else
-                            Toast.makeText(EditTablePage.this, "Data Insertion Failed", Toast.LENGTH_LONG).show();
-
+                        } else {
+                            // making a toast
+                            if (mToast == null) { // Initialize toast if needed
+                                mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
+                            }
+                            mToast.setText("Data Insertion Failed!");
+                            mToast.show();
+                        }
                         //Intent intent = new Intent(EditTablePage.this, UserArea.class);
                         //EditTablePage.this.startActivity(intent);
                         //finish();  // prevent getting back to this page by pressing 'back' button
