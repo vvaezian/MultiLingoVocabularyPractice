@@ -26,7 +26,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class HelperFunctions  {
-    //TODO: Generalize for more languages (check other files to see if they need change regarding this)
+
     public static String abbreviate(String langName){
         String output = "";
         switch (langName) {

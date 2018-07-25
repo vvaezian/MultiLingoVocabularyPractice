@@ -5,7 +5,7 @@
         android:id="@+id/action_addWords"
         android:icon="@drawable/add"
         android:title="Add Words"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
     <item android:id="@+id/action_settings"
         android:title="Settings"
         app:showAsAction="never"/>
