@@ -22,12 +22,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         final String TABLE_NAME = "WordsTable";
-        final String[] allLangs = {"fr", "de", "es", "it", "en", "ar", "`zh-CN`", "`zh-TW`", "nl", "hi", "fa", "pt", "ru", "ja", "tr", "sv"};
+        // this is used in HelperFunction as well. If you wanted to change this, make sure to do the same change there as well.
+        final String[] allLangs = {"fr", "de", "es", "it", "en", "ar", "ch", "tw", "nl", "hi", "fa", "pt", "ru", "ja", "tr", "sv"};
 
         createString = "CREATE TABLE " + TABLE_NAME + " (source TEXT PRIMARY KEY";
         for (String lang:allLangs)
             createString += ", " + lang + " Text";
-        createString += ",status TINYINT );";
+        createString += ", status TINYINT );";
         Log.d("create query: ", createString);
         db.execSQL(createString);
     }
@@ -54,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put("source", sourceText);
         for (int i=0; i< langs.length; i++)
-            contentValues.put(langs[i], translations[i]);
+            contentValues.put(langs[i] , translations[i]);
         contentValues.put("status", status);
 
         // Insert the new row, returning the primary key value of the new row
@@ -63,14 +64,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-
     public Cursor getAllData(String[] langs){
         StringBuilder cols = new StringBuilder();
         for (String lang : langs)
             cols.append(lang).append(", ");
         String columns = cols.substring(0, cols.length() - 2); //to get rid of the last ", "
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT source, " + columns + " FROM " + TABLE_NAME;
+        String query = "SELECT source, "  + columns + " FROM " + TABLE_NAME;
         return db.rawQuery(query, null);
     }
 
@@ -104,11 +104,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         int NoOfRows = (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME);
         return NoOfRows == 0;
-    }
-
-    public Integer deleteData(String id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "ID = ?", new String[] {id} );
     }
 
     public Integer deleteRow(String source) {

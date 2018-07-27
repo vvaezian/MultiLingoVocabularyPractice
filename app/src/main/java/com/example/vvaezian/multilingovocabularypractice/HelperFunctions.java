@@ -42,9 +42,9 @@ public class HelperFunctions  {
                 break;
             case "Arabic": output = "ar";
                 break;
-            case "Chinese (Simplified)": output = "zh-CN";
+            case "Chinese (Simplified)": output = "ch";
                 break;
-            case "Chinese (Traditional)": output = "zh-TW";
+            case "Chinese (Traditional)": output = "tw";
                 break;
             case "Dutch": output = "nl";
                 break;
@@ -81,9 +81,9 @@ public class HelperFunctions  {
                 break;
             case "ar": output = "Arabic";
                 break;
-            case "zh-CN": output = "Chinese (Simplified)";
+            case "ch": output = "Chinese (Simplified)";
                 break;
-            case "zh-TW": output = "Chinese (Traditional)";
+            case "tw": output = "Chinese (Traditional)";
                 break;
             case "nl": output = "Dutch";
                 break;
@@ -182,11 +182,10 @@ public class HelperFunctions  {
 
         final DatabaseHelper userDB = HelperFunctions.getDataBaseHelper(context);
 
-        // getting user's languages from shared preferences
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String LoggedInUser = sp.getString("user","");
-        final String langsConcated = sp.getString(LoggedInUser,"");
-        final String[] langs = langsConcated.split(" ");
+
+        final String[] allLangs = {"fr", "de", "es", "it", "en", "ar", "ch", "tw", "nl", "hi", "fa", "pt", "ru", "ja", "tr", "sv"};
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -200,13 +199,13 @@ public class HelperFunctions  {
 
                     for (int i=0; i < jsonResponse.length(); i++){
                         jsonObj = jsonResponse.getJSONObject(i);
-                        final String[] translations = new String[langs.length];
-                        for (int j=0; j < langs.length; j++){
-                            translations[j] = jsonObj.getString(langs[j]);
+                        final String[] translations = new String[allLangs.length];
+                        for (int j=0; j < allLangs.length; j++){
+                            translations[j] = jsonObj.getString(allLangs[j]);
                         }
                         Log.d(" ----- syncDown ----", Arrays.toString(translations));
                         String sourceWord = jsonObj.getString("source");
-                        boolean isInserted = userDB.insertData(sourceWord, langs, translations, 1);
+                        boolean isInserted = userDB.insertData(sourceWord, allLangs, translations, 1);
                         if (isInserted)
                             Log.d(" ----- syncDown ----", "inserted");
                         else
@@ -302,6 +301,7 @@ public class HelperFunctions  {
 
                     int resID = context.getResources().getIdentifier(langsElement + "_transparent" , "drawable", context.getPackageName());
                     button.setBackgroundResource(resID);
+
                     button.setText(texts.get(langsElement).toString());
                     button.setTextColor(Color.BLACK);
                     button.setTextSize(fontSize);

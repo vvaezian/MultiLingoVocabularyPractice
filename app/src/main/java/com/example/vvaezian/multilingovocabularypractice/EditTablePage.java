@@ -148,14 +148,38 @@ public class EditTablePage extends ActionBar {
                 String spinnerText = dropDownSpinner.getSelectedItem().toString();
                 if (spinnerText.equals("Auto-Detect"))
                     sourceLang = "";
-                else
-                    sourceLang = HelperFunctions.abbreviate(spinnerText);
+                else {
+                    switch (spinnerText) {
+                        case "Chinese (Traditional)":
+                            sourceLang = "zh-TW";
+                            break;
+                        case "Chinese (Simplified)":
+                            sourceLang = "zh-CN";
+                            break;
+                        default:
+                            sourceLang = HelperFunctions.abbreviate(spinnerText);
+                            break;
+                    }
+                }
 
                 // looping through EditTexts to set the translations
                 for (int i=0; i < tl.getChildCount(); i++){
                     TableRow tr = (TableRow) tl.getChildAt(i);
                     EditText tv = (EditText) tr.getChildAt(0);
-                    translateWord(inputWords, sourceLang, langs[i], tv);
+
+                    String targetLang;
+                    switch (langs[i]) {
+                        case "tw":
+                            targetLang = "zh-TW";
+                            break;
+                        case "ch":
+                            targetLang = "zh-CN";
+                            break;
+                        default:
+                            targetLang = langs[i];
+                    }
+
+                    translateWord(inputWords, sourceLang, targetLang, tv);
                 }
                 loadingSpinner.setVisibility(View.GONE);
             }
@@ -204,10 +228,10 @@ public class EditTablePage extends ActionBar {
 
                     else {
 
-                        String langsChineseFixedConcated = langsConcated.replace("zh-CN",  "`zh-CN`");
-                        langsChineseFixedConcated = langsChineseFixedConcated.replace("zh-TW",  "`zh-TW`");
-                        String [] langsChineseFixed = langsChineseFixedConcated.split(" ");
-                        boolean isInserted = userDB.insertData(sourceWord, langsChineseFixed, translations, 0);
+                        //String langsChineseFixedConcated = langsConcated.replace("zh-CN",  "`zh-CN`");
+                        //langsChineseFixedConcated = langsChineseFixedConcated.replace("zh-TW",  "`zh-TW`");
+                        //String [] langsChineseFixed = langsChineseFixedConcated.split(" ");
+                        boolean isInserted = userDB.insertData(sourceWord, langs, translations, 0);
                         if (isInserted) {
                             etInput.setText("");
                             // making a toast
