@@ -22,7 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class testPage extends ActionBar {
+public class PracticePage extends ActionBar {
 
     Cursor cursor;
     ArrayList<Integer> ShuffledIndexes;
@@ -168,7 +168,7 @@ public class testPage extends ActionBar {
                     else {
                         // toast is defined in this way so that subsequent toasts don't have to wait for previous toast to finish
                         if (mToast == null) { // Initialize toast if needed
-                            mToast = Toast.makeText(testPage.this, "", Toast.LENGTH_LONG);
+                            mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_LONG);
                         }
                         mToast.setText("You don't have any words in your database!");
                         mToast.show();
@@ -196,8 +196,8 @@ public class testPage extends ActionBar {
             btnAddWords.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(testPage.this, EditTablePage.class);
-                    testPage.this.startActivity(intent);
+                    Intent intent = new Intent(PracticePage.this, EditTablePage.class);
+                    PracticePage.this.startActivity(intent);
                     finish();
                 }
             });
@@ -224,7 +224,7 @@ public class testPage extends ActionBar {
                         if (userDB.deleteRow(cursor.getString(0)) == 1) {
                             //make a success toast
                             if (mToast == null) { // Initialize toast if needed
-                                mToast = Toast.makeText(testPage.this, "", Toast.LENGTH_LONG);
+                                mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_LONG);
                             }
                             mToast.setText("Deleted Successfully");
                             mToast.show();
@@ -237,7 +237,7 @@ public class testPage extends ActionBar {
                         else {
                             // make a failure toast
                             if (mToast == null) { // Initialize toast if needed
-                                mToast = Toast.makeText(testPage.this, "", Toast.LENGTH_LONG);
+                                mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_LONG);
                             }
                             mToast.setText("Deletion Failed!");
                             mToast.show();

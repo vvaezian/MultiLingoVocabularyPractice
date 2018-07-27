@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -98,8 +99,11 @@ public class EditTablePage extends ActionBar {
 
         // producing fields to hold translations
         final TableLayout tl = (TableLayout) findViewById(R.id.TranslatedLanguagesArea);
+
         TableRow[] rows = new TableRow[langs.length];
         final EditText[] et = new EditText[langs.length];
+
+        ImageView iv;
 
         for (int i=0; i < langs.length; i++){
 
@@ -109,11 +113,17 @@ public class EditTablePage extends ActionBar {
             params.setMargins(0, 10, 0, 10);
             rows[i].setLayoutParams(params);
 
+            iv = new ImageView(this);
+            int resID = getApplicationContext().getResources().getIdentifier(langs[i] + "_icon" , "drawable", getApplicationContext().getPackageName());
+            iv.setImageResource(resID);
+            iv.setBaselineAlignBottom(true);
+
             // Create an EditText item to be the row-content.
             et[i] = new EditText(this);
-            et[i].setHint(HelperFunctions.deAbbreviate(langs[i]) + " Translation");
+            et[i].setHint("  " + HelperFunctions.deAbbreviate(langs[i]) + " Translation");
             et[i].setGravity(Gravity.LEFT);
 
+            rows[i].addView(iv);
             // Add the button to row.
             rows[i].addView(et[i]);
 
@@ -165,7 +175,7 @@ public class EditTablePage extends ActionBar {
                 // looping through EditTexts to set the translations
                 for (int i=0; i < tl.getChildCount(); i++){
                     TableRow tr = (TableRow) tl.getChildAt(i);
-                    EditText tv = (EditText) tr.getChildAt(0);
+                    EditText tv = (EditText) tr.getChildAt(1); // index 0 is for icons
 
                     String targetLang;
                     switch (langs[i]) {
@@ -209,7 +219,7 @@ public class EditTablePage extends ActionBar {
                     boolean flag = true; // checking if all fields are empty
                     for (int i = 0; i < tl.getChildCount(); i++) {
                         TableRow tr = (TableRow) tl.getChildAt(i);
-                        EditText tv = (EditText) tr.getChildAt(0);
+                        EditText tv = (EditText) tr.getChildAt(1);
                         String text = tv.getText().toString();
                         if (!text.equals(""))
                             flag = false;
@@ -227,10 +237,6 @@ public class EditTablePage extends ActionBar {
                     }
 
                     else {
-
-                        //String langsChineseFixedConcated = langsConcated.replace("zh-CN",  "`zh-CN`");
-                        //langsChineseFixedConcated = langsChineseFixedConcated.replace("zh-TW",  "`zh-TW`");
-                        //String [] langsChineseFixed = langsChineseFixedConcated.split(" ");
                         boolean isInserted = userDB.insertData(sourceWord, langs, translations, 0);
                         if (isInserted) {
                             etInput.setText("");

@@ -116,7 +116,7 @@ public class UserArea extends ActionBar {
     }
 
     public void BtnTestClicked(View view) {
-        Intent intent = new Intent(this, testPage.class);
+        Intent intent = new Intent(this, PracticePage.class);
         startActivity(intent);
     }
 

@@ -29,16 +29,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".UserArea" />
         </activity>
-        <activity android:name=".testPage"
+        <activity
+            android:name=".PracticePage"
             android:label="Practice"
             android:parentActivityName=".UserArea">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".UserArea" />
         </activity>
-
         <activity android:name=".ActionBar" />
-        <activity android:name=".Settings"
+        <activity
+            android:name=".Settings"
             android:label="Settings"
             android:parentActivityName=".UserArea">
             <meta-data

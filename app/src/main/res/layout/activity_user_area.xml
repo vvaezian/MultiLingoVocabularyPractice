@@ -42,7 +42,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/CLlangsStatArea"
                 android:layout_width="match_parent"
-                android:layout_height="138dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvLangsStat"
@@ -64,12 +64,12 @@
                     android:id="@+id/btnSelectLangs"
                     android:layout_width="137dp"
                     android:layout_height="38dp"
-                    android:layout_marginBottom="17dp"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginEnd="121dp"
                     android:layout_marginLeft="126dp"
                     android:layout_marginRight="121dp"
                     android:layout_marginStart="126dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginTop="16dp"
                     android:onClick="BtnSelectLangsClicked"
                     android:text="Select Languages"
                     android:textAllCaps="false"
@@ -82,7 +82,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/CLwordsStatsArea"
                 android:layout_width="match_parent"
-                android:layout_height="138dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvWordsStats"
@@ -102,12 +102,12 @@
                     android:id="@+id/btnAddWords"
                     android:layout_width="105dp"
                     android:layout_height="38dp"
-                    android:layout_marginBottom="13dp"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginEnd="147dp"
                     android:layout_marginLeft="147dp"
                     android:layout_marginRight="147dp"
                     android:layout_marginStart="147dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginTop="16dp"
                     android:onClick="BtnAddWordsClicked"
                     android:text="+ Add Words"
                     android:textAllCaps="false"
@@ -122,7 +122,7 @@
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/CLgoToEditTablePageArea"
                 android:layout_width="match_parent"
-                android:layout_height="212dp">
+                android:layout_height="wrap_content">
 
                 <Button
                     android:id="@+id/test"
@@ -130,11 +130,13 @@
                     android:layout_height="62dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="24dp"
                     android:layout_marginTop="44dp"
                     android:onClick="BtnTestClicked"
                     android:text="Start Practicing"
                     android:textAllCaps="false"
                     android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.503"
                     app:layout_constraintStart_toStartOf="parent"
