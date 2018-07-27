@@ -39,6 +39,7 @@ public class EditTablePage extends ActionBar {
 
     public void translateWord(String query, String source, String target, final EditText et) {
         /* Translates 'query' into 'target' language, and shows it in the et EditText */
+
         String apiKey = BuildConfig.ApiKey;
         //using Retrofit to send a request to Google-Translate-API and receive the response
         Call<GoogleTranslateAPIResponse> call = apiInterface.translateWord(
@@ -60,7 +61,8 @@ public class EditTablePage extends ActionBar {
                 GoogleTranslateAPIResponse.Data dataResponse = apiResponse.getData();
                 List<Translation> list = dataResponse.getTranslations();
                 String returnedText = list.get(0).getTranslatedText();
-                et.setText(returnedText);
+                String output = returnedText.replace("&#39;","'");
+                et.setText(output);
             }
 
             @Override
@@ -110,6 +112,7 @@ public class EditTablePage extends ActionBar {
             // Create an EditText item to be the row-content.
             et[i] = new EditText(this);
             et[i].setHint(HelperFunctions.deAbbreviate(langs[i]) + " Translation");
+            et[i].setGravity(Gravity.LEFT);
 
             // Add the button to row.
             rows[i].addView(et[i]);
@@ -200,7 +203,11 @@ public class EditTablePage extends ActionBar {
                     }
 
                     else {
-                        boolean isInserted = userDB.insertData(sourceWord, langs, translations, 0);
+
+                        String langsChineseFixedConcated = langsConcated.replace("zh-CN",  "`zh-CN`");
+                        langsChineseFixedConcated = langsChineseFixedConcated.replace("zh-TW",  "`zh-TW`");
+                        String [] langsChineseFixed = langsChineseFixedConcated.split(" ");
+                        boolean isInserted = userDB.insertData(sourceWord, langsChineseFixed, translations, 0);
                         if (isInserted) {
                             etInput.setText("");
                             // making a toast

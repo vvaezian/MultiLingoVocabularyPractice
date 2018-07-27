@@ -67,43 +67,27 @@ public class Settings extends ActionBar {
                 CheckBox cbFa = (CheckBox) findViewById(R.id.cbFa);
                 CheckBox cbHi = (CheckBox) findViewById(R.id.cbHi);
                 CheckBox cbPt = (CheckBox) findViewById(R.id.cbPt);
+                CheckBox cbRu = (CheckBox) findViewById(R.id.cbRu);
+                CheckBox cbSw = (CheckBox) findViewById(R.id.cbSw);
+                CheckBox cbTu = (CheckBox) findViewById(R.id.cbTu);
+                CheckBox cbJa = (CheckBox) findViewById(R.id.cbJa);
 
-                if (cbEn.isChecked()){
-                    langs += abbreviate(cbEn.getText().toString()) + " ";
-                }
-                if (cbFr.isChecked()){
-                    langs += abbreviate(cbFr.getText().toString()) + " ";
-                }
-                if (cbIt.isChecked()){
-                    langs += abbreviate(cbIt.getText().toString()) + " ";
-                }
-                if (cbGer.isChecked()){
-                    langs += abbreviate(cbGer.getText().toString()) + " ";
-                }
-                if (cbSp.isChecked()){
-                    langs += abbreviate(cbSp.getText().toString()) + " ";
-                }
-                if (cbNl.isChecked()){
-                    langs += abbreviate(cbNl.getText().toString()) + " ";
-                }
-                if (cbChS.isChecked()){
-                    langs += abbreviate(cbChS.getText().toString()) + " ";
-                }
-                if (cbChT.isChecked()){
-                    langs += abbreviate(cbChT.getText().toString()) + " ";
-                }
-                if (cbAr.isChecked()){
-                    langs += abbreviate(cbAr.getText().toString()) + " ";
-                }
-                if (cbFa.isChecked()){
-                    langs += abbreviate(cbFa.getText().toString()) + " ";
-                }
-                if (cbHi.isChecked()){
-                    langs += abbreviate(cbHi.getText().toString()) + " ";
-                }
-                if (cbPt.isChecked()){
-                    langs += abbreviate(cbPt.getText().toString()) + " ";
-                }
+                if (cbEn.isChecked()) langs += abbreviate(cbEn.getText().toString()) + " ";
+                if (cbFr.isChecked()) langs += abbreviate(cbFr.getText().toString()) + " ";
+                if (cbIt.isChecked()) langs += abbreviate(cbIt.getText().toString()) + " ";
+                if (cbGer.isChecked()) langs += abbreviate(cbGer.getText().toString()) + " ";
+                if (cbSp.isChecked()) langs += abbreviate(cbSp.getText().toString()) + " ";
+                if (cbNl.isChecked()) langs += abbreviate(cbNl.getText().toString()) + " ";
+                if (cbRu.isChecked()) langs += abbreviate(cbRu.getText().toString()) + " ";
+                if (cbSw.isChecked()) langs += abbreviate(cbSw.getText().toString()) + " ";
+                if (cbTu.isChecked()) langs += abbreviate(cbTu.getText().toString()) + " ";
+                if (cbJa.isChecked()) langs += abbreviate(cbJa.getText().toString()) + " ";
+                if (cbAr.isChecked()) langs += abbreviate(cbAr.getText().toString()) + " ";
+                if (cbFa.isChecked()) langs += abbreviate(cbFa.getText().toString()) + " ";
+                if (cbHi.isChecked()) langs += abbreviate(cbHi.getText().toString()) + " ";
+                if (cbPt.isChecked()) langs += abbreviate(cbPt.getText().toString()) + " ";
+                if (cbChS.isChecked()) langs += abbreviate(cbChS.getText().toString()) + " ";
+                if (cbChT.isChecked()) langs += abbreviate(cbChT.getText().toString()) + " ";
 
                 //Adding selected languages to the Shared Preferences
                 //final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

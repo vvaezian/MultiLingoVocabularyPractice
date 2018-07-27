@@ -54,6 +54,14 @@ public class HelperFunctions  {
                 break;
             case "Portuguese": output = "pt";
                 break;
+            case "Russian": output = "ru";
+                break;
+            case "Japanese": output = "ja";
+                break;
+            case "Turkish": output = "tr";
+                break;
+            case "Swedish": output = "sv";
+                break;
         }
         return output;
     }
@@ -85,6 +93,14 @@ public class HelperFunctions  {
                 break;
             case "pt": output = "Portuguese";
                 break;
+            case "ru": output = "Russian";
+                break;
+            case "ja": output = "Japanese";
+                break;
+            case "tr": output = "Turkish";
+                break;
+            case "sv": output = "Swedish";
+                break;
         }
         return output;
     }
@@ -95,7 +111,7 @@ public class HelperFunctions  {
     public static DatabaseHelper getDataBaseHelper(final Context context){
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String loggedInUser = sp.getString("user","");
-        final String databaseName = loggedInUser + "Database2.db";
+        final String databaseName = loggedInUser + "Database4.db";
         return new DatabaseHelper(context, databaseName);
     }
 
@@ -160,7 +176,6 @@ public class HelperFunctions  {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(syncRequest);
     }
-
 
     public static void syncDown(final Context context) {
         /* Updates the local database with dirty rows from the remote database*/
@@ -304,7 +319,7 @@ public class HelperFunctions  {
     }
 
     //TODO: turn toast-making to a function like this
-    // (it seems the problem with this func is that we need to somwhow pass mToast by reference
+    // (it seems the problem with this func is that we need to somehow pass mToast by reference
     public static void makeToast(String msg, Toast mToast, Context mContext){
         if (mToast == null) { // Initialize toast if needed
             mToast = Toast.makeText(mContext, "", Toast.LENGTH_LONG);

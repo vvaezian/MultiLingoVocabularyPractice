@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         final String TABLE_NAME = "WordsTable";
-        final String[] allLangs = {"fr", "de", "es", "it", "en"};
+        final String[] allLangs = {"fr", "de", "es", "it", "en", "ar", "`zh-CN`", "`zh-TW`", "nl", "hi", "fa", "pt", "ru", "ja", "tr", "sv"};
 
         createString = "CREATE TABLE " + TABLE_NAME + " (source TEXT PRIMARY KEY";
         for (String lang:allLangs)
