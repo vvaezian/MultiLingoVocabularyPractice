@@ -111,12 +111,13 @@ public class HelperFunctions  {
     public static DatabaseHelper getDataBaseHelper(final Context context){
         final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         final String loggedInUser = sp.getString("user","");
-        final String databaseName = loggedInUser + "Database4.db";
+        final String databaseName = loggedInUser + "VocabDatabase1.db";
         return new DatabaseHelper(context, databaseName);
     }
 
     public static void syncUp(final Context context) {
         /* Updating the remote database with dirty rows from local database*/
+
         final DatabaseHelper userDB = HelperFunctions.getDataBaseHelper(context);
 
         // getting user's languages from shared preferences
