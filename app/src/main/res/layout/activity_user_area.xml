@@ -12,7 +12,7 @@
         android:id="@+id/userAreaLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.vvaezian.multilingovocabularypractice.UserArea">
+        tools:context="com.vvaezian.multilingovocabularypractice.UserArea">
 
         <include layout="@layout/my_toolbar" />
 
@@ -25,7 +25,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="47dp"
             android:layout_marginTop="73dp"
-            android:text="Greetings"
+            android:text="@string/greetings"
             android:textSize="16sp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="47dp" />
@@ -71,7 +71,7 @@
                     android:layout_marginStart="126dp"
                     android:layout_marginTop="16dp"
                     android:onClick="BtnSelectLangsClicked"
-                    android:text="Select Languages"
+                    android:text="@string/select_languages"
                     android:textAllCaps="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +109,7 @@
                     android:layout_marginStart="147dp"
                     android:layout_marginTop="16dp"
                     android:onClick="BtnAddWordsClicked"
-                    android:text="+ Add Words"
+                    android:text="@string/add_words"
                     android:textAllCaps="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -133,7 +133,7 @@
                     android:layout_marginBottom="24dp"
                     android:layout_marginTop="44dp"
                     android:onClick="BtnTestClicked"
-                    android:text="Start Practicing"
+                    android:text="@string/start_practicing"
                     android:textAllCaps="false"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"

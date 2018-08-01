@@ -1,4 +1,4 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
-
-import static com.example.vvaezian.multilingovocabularypractice.HelperFunctions.abbreviate;
 
 public class Settings extends ActionBar {
 
@@ -34,7 +32,7 @@ public class Settings extends ActionBar {
         for (int i=0; i < checkBoxesArea.getChildCount(); i++){
             CheckBox cb = (CheckBox) checkBoxesArea.getChildAt(i);
             // the method abbreviate is defined in HelperFunctions class (it has been imported)
-            String cbText = abbreviate(cb.getText().toString());
+            String cbText = HelperFunctions.abbreviate(cb.getText().toString());
             for (String lang:langs)
                 if (cbText.equals(lang))
                     cb.setChecked(true);
@@ -43,7 +41,7 @@ public class Settings extends ActionBar {
         for (int i=0; i < checkBoxesArea2.getChildCount(); i++){
             CheckBox cb = (CheckBox) checkBoxesArea2.getChildAt(i);
             // the method abbreviate is defined in HelperFunctions class (it has been imported)
-            String cbText = abbreviate(cb.getText().toString());
+            String cbText = HelperFunctions.abbreviate(cb.getText().toString());
             for (String lang:langs)
                 if (cbText.equals(lang))
                     cb.setChecked(true);
@@ -72,25 +70,24 @@ public class Settings extends ActionBar {
                 CheckBox cbTu = (CheckBox) findViewById(R.id.cbTu);
                 CheckBox cbJa = (CheckBox) findViewById(R.id.cbJa);
 
-                if (cbEn.isChecked()) langs += abbreviate(cbEn.getText().toString()) + " ";
-                if (cbFr.isChecked()) langs += abbreviate(cbFr.getText().toString()) + " ";
-                if (cbIt.isChecked()) langs += abbreviate(cbIt.getText().toString()) + " ";
-                if (cbGer.isChecked()) langs += abbreviate(cbGer.getText().toString()) + " ";
-                if (cbSp.isChecked()) langs += abbreviate(cbSp.getText().toString()) + " ";
-                if (cbNl.isChecked()) langs += abbreviate(cbNl.getText().toString()) + " ";
-                if (cbRu.isChecked()) langs += abbreviate(cbRu.getText().toString()) + " ";
-                if (cbSw.isChecked()) langs += abbreviate(cbSw.getText().toString()) + " ";
-                if (cbTu.isChecked()) langs += abbreviate(cbTu.getText().toString()) + " ";
-                if (cbJa.isChecked()) langs += abbreviate(cbJa.getText().toString()) + " ";
-                if (cbAr.isChecked()) langs += abbreviate(cbAr.getText().toString()) + " ";
-                if (cbFa.isChecked()) langs += abbreviate(cbFa.getText().toString()) + " ";
-                if (cbHi.isChecked()) langs += abbreviate(cbHi.getText().toString()) + " ";
-                if (cbPt.isChecked()) langs += abbreviate(cbPt.getText().toString()) + " ";
-                if (cbChS.isChecked()) langs += abbreviate(cbChS.getText().toString()) + " ";
-                if (cbChT.isChecked()) langs += abbreviate(cbChT.getText().toString()) + " ";
+                if (cbEn.isChecked()) langs += HelperFunctions.abbreviate(cbEn.getText().toString()) + " ";
+                if (cbFr.isChecked()) langs += HelperFunctions.abbreviate(cbFr.getText().toString()) + " ";
+                if (cbIt.isChecked()) langs += HelperFunctions.abbreviate(cbIt.getText().toString()) + " ";
+                if (cbGer.isChecked()) langs += HelperFunctions.abbreviate(cbGer.getText().toString()) + " ";
+                if (cbSp.isChecked()) langs += HelperFunctions.abbreviate(cbSp.getText().toString()) + " ";
+                if (cbNl.isChecked()) langs += HelperFunctions.abbreviate(cbNl.getText().toString()) + " ";
+                if (cbRu.isChecked()) langs += HelperFunctions.abbreviate(cbRu.getText().toString()) + " ";
+                if (cbSw.isChecked()) langs += HelperFunctions.abbreviate(cbSw.getText().toString()) + " ";
+                if (cbTu.isChecked()) langs += HelperFunctions.abbreviate(cbTu.getText().toString()) + " ";
+                if (cbJa.isChecked()) langs += HelperFunctions.abbreviate(cbJa.getText().toString()) + " ";
+                if (cbAr.isChecked()) langs += HelperFunctions.abbreviate(cbAr.getText().toString()) + " ";
+                if (cbFa.isChecked()) langs += HelperFunctions.abbreviate(cbFa.getText().toString()) + " ";
+                if (cbHi.isChecked()) langs += HelperFunctions.abbreviate(cbHi.getText().toString()) + " ";
+                if (cbPt.isChecked()) langs += HelperFunctions.abbreviate(cbPt.getText().toString()) + " ";
+                if (cbChS.isChecked()) langs += HelperFunctions.abbreviate(cbChS.getText().toString()) + " ";
+                if (cbChT.isChecked()) langs += HelperFunctions.abbreviate(cbChT.getText().toString()) + " ";
 
                 //Adding selected languages to the Shared Preferences
-                //final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor prefEditor = sp.edit();
                 String username = sp.getString("user", "");
                 prefEditor.remove(username);    // clearing the previous value

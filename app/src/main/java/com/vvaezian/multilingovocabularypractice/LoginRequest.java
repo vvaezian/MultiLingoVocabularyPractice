@@ -1,4 +1,4 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
 import com.android.volley.Request;
 import com.android.volley.Response;

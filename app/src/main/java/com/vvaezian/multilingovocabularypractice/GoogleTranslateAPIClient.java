@@ -1,4 +1,4 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

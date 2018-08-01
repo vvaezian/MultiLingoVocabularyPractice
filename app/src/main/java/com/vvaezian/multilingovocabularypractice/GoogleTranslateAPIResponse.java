@@ -1,4 +1,4 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
 import com.google.cloud.translate.Translation;
 import com.google.gson.annotations.SerializedName;

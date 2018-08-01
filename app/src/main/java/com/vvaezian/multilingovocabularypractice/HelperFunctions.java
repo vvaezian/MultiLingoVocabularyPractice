@@ -1,4 +1,4 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -12,7 +12,7 @@
         android:id="@+id/r_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".EditTablePage">
+        tools:context="com.vvaezian.multilingovocabularypractice.EditTablePage">
 
         <include layout="@layout/my_toolbar" />
 
@@ -44,7 +44,7 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="32dp"
             android:ems="10"
-            android:hint="Enter a Word"
+            android:hint="@string/enter_a_word"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/btnTranslate"
             app:layout_constraintHorizontal_bias="0.04"
@@ -61,7 +61,7 @@
             android:layout_marginEnd="44dp"
             android:layout_marginRight="44dp"
             android:layout_marginTop="41dp"
-            android:text="Translate"
+            android:text="@string/translate"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
@@ -153,7 +153,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="140dp"
             android:gravity="center"
-            android:text="Source Language:"
+            android:text="@string/source_language"
             app:layout_constraintEnd_toStartOf="@+id/relativeLayout2"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"

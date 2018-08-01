@@ -1,4 +1,4 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,13 +10,10 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public DatabaseHelper(final Context context, final String dbName) {
+    DatabaseHelper(final Context context, final String dbName) {
         // for explanation of the extra argument `dbName` see getDataBaseHelper method in HelperFunctions java file
         super(context, dbName, null, 1);
     }
-
-    // String used to programmatically generate SQL Create Table command
-    public static String createString;
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -25,12 +22,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // this is used in HelperFunction as well. If you wanted to change this, make sure to do the same change there as well.
         final String[] allLangs = {"fr", "de", "es", "it", "en", "ar", "ch", "tw", "nl", "hi", "fa", "pt", "ru", "ja", "tr", "sv"};
 
-        createString = "CREATE TABLE " + TABLE_NAME + " (source TEXT PRIMARY KEY";
+        StringBuilder createString = new StringBuilder("CREATE TABLE " + TABLE_NAME + " (source TEXT PRIMARY KEY");
         for (String lang:allLangs)
-            createString += ", " + lang + " Text";
-        createString += ", status TINYINT );";
-        Log.d("create query: ", createString);
-        db.execSQL(createString);
+            createString.append(", ").append(lang).append(" Text");
+        createString.append(", status TINYINT );");
+        Log.d("create query: ", createString.toString());
+        db.execSQL(createString.toString());
     }
     // TODO: Implement onUpgrade properly
     @Override
@@ -42,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    final String TABLE_NAME = "WordsTable";
+    private final String TABLE_NAME = "WordsTable";
 
     // this function is used in 'EditTablePage'
     public boolean insertData(String sourceText, String[] langs, String[] translations, int status){

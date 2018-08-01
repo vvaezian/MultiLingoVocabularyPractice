@@ -1,4 +1,4 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import static com.example.vvaezian.multilingovocabularypractice.R.id.tvGreet;
+import static com.vvaezian.multilingovocabularypractice.R.id.tvGreet;
 
 public class UserArea extends ActionBar {
 
@@ -83,10 +83,10 @@ public class UserArea extends ActionBar {
         TextView wordsStats = (TextView) findViewById(R.id.tvWordsStats);
         long rowCounts = userDB.getRowCount();
         if (rowCounts == 0){
-            wordsStats.setText("You don't have any records in your database");
+            wordsStats.setText(R.string.You_dont_have_any_records_in_your_database);
         }
         else if (rowCounts == 1) {
-            wordsStats.setText("You have 1 record in your database");
+            wordsStats.setText(R.string.You_have_1_record_in_your_database);
         }
         else {
             wordsStats.setText("You have " + rowCounts + " records in your database");

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.vvaezian.multilingovocabularypractice.LoginPage">
+    tools:context="com.vvaezian.multilingovocabularypractice.LoginPage">
 
     <ProgressBar
         android:id="@+id/LoginProgressspinner"
@@ -20,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="UserName"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         android:layout_above="@+id/etPassword"
         android:layout_centerHorizontal="true"
@@ -35,7 +34,7 @@
         android:layout_alignStart="@+id/etUsername"
         android:layout_marginBottom="34dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword" />
 
     <Button
@@ -43,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="22dp"
-        android:text="Login"
+        android:text="@string/login"
         android:layout_above="@+id/BtnReg"
         android:layout_alignLeft="@+id/etPassword"
         android:layout_alignStart="@+id/etPassword"
@@ -55,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="206dp"
-        android:text="I don't have an Account"
+        android:text="@string/i_don_t_have_an_account"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/BtnLogin"
         android:layout_alignStart="@+id/BtnLogin"

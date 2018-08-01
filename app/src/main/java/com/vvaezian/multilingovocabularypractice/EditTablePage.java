@@ -1,6 +1,5 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -122,6 +121,7 @@ public class EditTablePage extends ActionBar {
             et[i] = new EditText(this);
             et[i].setHint("  " + HelperFunctions.deAbbreviate(langs[i]) + " Translation");
             et[i].setGravity(Gravity.LEFT);
+            // do not change 'left' to 'start' as suggested, because when chinese lang is used, it pushes translations in rtl langs like persian and arabic out of the box
 
             rows[i].addView(iv);
             // Add the button to row.
@@ -147,7 +147,7 @@ public class EditTablePage extends ActionBar {
 
                 // closing the virtual keyboard when button is clicked
                 InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                        getSystemService(INPUT_METHOD_SERVICE);
                 if (inputManager != null) {
                     inputManager.hideSoftInputFromWindow(Objects.requireNonNull(getCurrentFocus()).getWindowToken(),
                             InputMethodManager.HIDE_NOT_ALWAYS);

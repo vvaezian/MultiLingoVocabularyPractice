@@ -1,4 +1,4 @@
-package com.example.vvaezian.multilingovocabularypractice;
+package com.vvaezian.multilingovocabularypractice;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -31,7 +31,7 @@ public class PracticePage extends ActionBar {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.activity_practice_page);
         setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -109,7 +109,7 @@ public class PracticePage extends ActionBar {
 
             // Create a tv to be the row-content.
             TextView tv = new TextView(this);
-            tv.setText("You practiced all words in your database");
+            tv.setText(R.string.You_practiced_all_words_in_your_database);
             tv.setTextColor(Color.BLACK);
             tv.setTextSize(14);
 
@@ -127,7 +127,7 @@ public class PracticePage extends ActionBar {
 
             // Create a button to be the row-content.
             Button btnRepractice = new Button(this);
-            btnRepractice.setText("Practice Again");
+            btnRepractice.setText(R.string.Practice_Again);
 
             btnRepractice.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -191,7 +191,7 @@ public class PracticePage extends ActionBar {
 
             // Create a button to be the row-content.
             Button btnAddWords = new Button(this);
-            btnAddWords.setText("+ Add Words");
+            btnAddWords.setText(R.string.Add_Words);
 
             btnAddWords.setOnClickListener(new View.OnClickListener() {
                 @Override
