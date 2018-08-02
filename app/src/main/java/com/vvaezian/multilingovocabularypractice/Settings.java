@@ -94,9 +94,9 @@ public class Settings extends ActionBar {
                 prefEditor.putString(username, langs);  // adding the new value
                 boolean res = prefEditor.commit();
                 if (res)
-                    Toast.makeText(Settings.this, "Settings Saved", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Settings.this, "Settings Saved", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(Settings.this, "Saving Failed!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Settings.this, "Saving Failed!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Settings.this, UserArea.class);
                 Settings.this.startActivity(intent);

@@ -1,30 +1,43 @@
 apply plugin: 'com.android.application'
 
+// Load keystore
+def keystorePropertiesFile = rootProject.file("keyStore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+    signingConfigs {
+        config {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+    }
     compileSdkVersion 26
     //buildToolsVersion "26.0.1"
     defaultConfig {
-        applicationId "com.example.vvaezian.multilingovocabularypractice"
-        //minSdkVersion 15
+        applicationId "com.vvaezian.multilingovocabularypractice"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        multiDexEnabled true
+        //multiDexEnabled true
     }
     buildTypes {
         debug {
+            //minifyEnabled true
             buildConfigField 'String', "ApiKey", MultiLingo_ApiKey
         }
         release {
-            //minifyEnabled false
+            //minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField 'String', "ApiKey", MultiLingo_ApiKey
+            signingConfig signingConfigs.config
         }
     }
-
     packagingOptions {
         exclude 'project.properties'
         exclude 'META-INF/INDEX.LIST'
@@ -32,7 +45,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -41,21 +54,17 @@ dependencies {
     //implementation 'com.android.volley:volley:1.0.0'
     implementation 'com.mcxiaoke.volley:library:1.0.19'
     testImplementation 'junit:junit:4.12'
-
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     implementation 'com.squareup.okhttp3:okhttp:3.8.0'
-
     implementation('com.google.cloud:google-cloud-translate:1.3.1') {
         exclude group: 'org.apache.httpcomponents'
         exclude group: 'org.json', module: 'json'
     }
     annotationProcessor 'com.google.cloud:google-cloud-translate:1.3.1'
-
     //compile 'com.android.support:multidex:1.0.3'
 }

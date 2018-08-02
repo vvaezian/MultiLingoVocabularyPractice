@@ -8,10 +8,13 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static com.vvaezian.multilingovocabularypractice.R.id.tvGreet;
 
 public class UserArea extends ActionBar {
+
+    Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +60,9 @@ public class UserArea extends ActionBar {
             wordsStats.setText("You have " + rowCounts + " records in your database");
         }
 
-        ConstraintLayout clEditTablePageTransition = (ConstraintLayout) findViewById(R.id.CLgoToEditTablePageArea);
-
+        ConstraintLayout CLgoToPracticePageArea = findViewById(R.id.CLgoToPracticePageArea);
         if (langsConcated.length() == 0 || userDB.wordsTableIsEmpty()){  // checking if no language selected or no words added
-            clEditTablePageTransition.setVisibility(View.GONE);
+            CLgoToPracticePageArea.setVisibility(View.GONE);
         }
 
         // updating local database with dirty rows from the remote
@@ -79,7 +81,7 @@ public class UserArea extends ActionBar {
 
         DatabaseHelper userDB = HelperFunctions.getDataBaseHelper(getApplicationContext());
 
-        TextView wordsStats = (TextView) findViewById(R.id.tvWordsStats);
+        TextView wordsStats = findViewById(R.id.tvWordsStats);
         long rowCounts = userDB.getRowCount();
         if (rowCounts == 0){
             wordsStats.setText(R.string.You_dont_have_any_records_in_your_database);
@@ -91,10 +93,15 @@ public class UserArea extends ActionBar {
             wordsStats.setText("You have " + rowCounts + " records in your database");
         }
 
+        // Don't show button for going to practice page if no languages selected or words added
+        ConstraintLayout CLgoToPracticePageArea = findViewById(R.id.CLgoToPracticePageArea);
+        if (langsConcated.length() == 0 || userDB.wordsTableIsEmpty()){  // checking if no language selected or no words added
+            CLgoToPracticePageArea.setVisibility(View.GONE);
+        }
+
         // show button for going to practice page if languages selected and words added
-        ConstraintLayout clEditTablePageTransition = (ConstraintLayout) findViewById(R.id.CLgoToEditTablePageArea);
         if (langsConcated.length() != 0 && !userDB.wordsTableIsEmpty()) {
-            clEditTablePageTransition.setVisibility(View.VISIBLE);
+            CLgoToPracticePageArea.setVisibility(View.VISIBLE);
         }
 
         Boolean syncedUp = sp.getBoolean("syncedUp", false);
@@ -110,11 +117,26 @@ public class UserArea extends ActionBar {
     }
 
     public void BtnAddWordsClicked(View view) {
-        Intent intent = new Intent(this, EditTablePage.class);
-        startActivity(intent);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String username = sp.getString("user", "");
+        String langsConcated = sp.getString(username,"");
+
+        if (langsConcated.length() != 0) {
+            Intent intent = new Intent(this, EditTablePage.class);
+            startActivity(intent);
+        }
+        else {
+            // toast is defined in this way so that subsequent toasts don't have to wait for previous toast to finish
+            //TODO: this doesn't work for toast of different activities
+            if (mToast == null) { // Initialize toast if needed
+                mToast = Toast.makeText(UserArea.this, "", Toast.LENGTH_SHORT);
+            }
+            mToast.setText("You need to select languages first.");
+            mToast.show();
+        }
     }
 
-    public void BtnTestClicked(View view) {
+    public void BtnPracticeClicked(View view) {
         Intent intent = new Intent(this, PracticePage.class);
         startActivity(intent);
     }

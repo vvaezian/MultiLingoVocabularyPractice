@@ -321,7 +321,7 @@ public class HelperFunctions  {
     // (it seems the problem with this func is that we need to somehow pass mToast by reference
     public static void makeToast(String msg, Toast mToast, Context mContext){
         if (mToast == null) { // Initialize toast if needed
-            mToast = Toast.makeText(mContext, "", Toast.LENGTH_LONG);
+            mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
         }
         mToast.setText(msg);
         mToast.show();

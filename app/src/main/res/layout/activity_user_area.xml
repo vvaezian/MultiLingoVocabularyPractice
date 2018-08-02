@@ -120,19 +120,19 @@
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/CLgoToEditTablePageArea"
+                android:id="@+id/CLgoToPracticePageArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/test"
+                    android:id="@+id/btnStartPractice"
                     android:layout_width="219dp"
                     android:layout_height="62dp"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="24dp"
                     android:layout_marginTop="44dp"
-                    android:onClick="BtnTestClicked"
+                    android:onClick="BtnPracticeClicked"
                     android:text="@string/start_practicing"
                     android:textAllCaps="false"
                     android:textSize="24sp"

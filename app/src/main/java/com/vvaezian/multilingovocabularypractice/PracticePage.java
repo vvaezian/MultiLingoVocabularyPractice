@@ -167,11 +167,10 @@ public class PracticePage extends ActionBar {
                     else {
                         // toast is defined in this way so that subsequent toasts don't have to wait for previous toast to finish
                         if (mToast == null) { // Initialize toast if needed
-                            mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_LONG);
+                            mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_SHORT);
                         }
                         mToast.setText("You don't have any words in your database!");
                         mToast.show();
-
                     }
                 }
             });
@@ -223,7 +222,7 @@ public class PracticePage extends ActionBar {
                         if (userDB.deleteRow(cursor.getString(0)) == 1) {
                             //make a success toast
                             if (mToast == null) { // Initialize toast if needed
-                                mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_LONG);
+                                mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_SHORT);
                             }
                             mToast.setText("Deleted Successfully");
                             mToast.show();
@@ -236,7 +235,7 @@ public class PracticePage extends ActionBar {
                         else {
                             // make a failure toast
                             if (mToast == null) { // Initialize toast if needed
-                                mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_LONG);
+                                mToast = Toast.makeText(PracticePage.this, "", Toast.LENGTH_SHORT);
                             }
                             mToast.setText("Deletion Failed!");
                             mToast.show();

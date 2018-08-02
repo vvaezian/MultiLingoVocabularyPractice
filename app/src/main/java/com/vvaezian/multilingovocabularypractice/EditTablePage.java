@@ -51,7 +51,7 @@ public class EditTablePage extends ActionBar {
                 GoogleTranslateAPIResponse apiResponse = response.body();
 
                 if (apiResponse == null) {
-                    Toast toast = Toast.makeText(getBaseContext(), "Translation Failed!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getBaseContext(), "Translation Failed!", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,0);
                     toast.show();
                 }
@@ -208,7 +208,7 @@ public class EditTablePage extends ActionBar {
                 if (sourceWord.equals("")) {
                     // make a toast
                     if (mToast == null) { // Initialize toast if needed
-                        mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
+                        mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_SHORT);
                     }
                     mToast.setText("'source' field is empty.");
                     mToast.show();
@@ -229,7 +229,7 @@ public class EditTablePage extends ActionBar {
                     if (flag){
                         // making a toast
                         if (mToast == null) { // Initialize toast if needed
-                            mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
+                            mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_SHORT);
                         }
                         mToast.setText("No Translation Is Given");
                         mToast.show();
@@ -241,7 +241,7 @@ public class EditTablePage extends ActionBar {
                             etInput.setText("");
                             // making a toast
                             if (mToast == null) { // Initialize toast if needed
-                                mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
+                                mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_SHORT);
                             }
                             mToast.setText("Data Saved In Your Database");
                             mToast.show();
@@ -253,7 +253,7 @@ public class EditTablePage extends ActionBar {
                         } else {
                             // making a toast
                             if (mToast == null) { // Initialize toast if needed
-                                mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_LONG);
+                                mToast = Toast.makeText(EditTablePage.this, "", Toast.LENGTH_SHORT);
                             }
                             mToast.setText("Saving Failed!");
                             mToast.show();
