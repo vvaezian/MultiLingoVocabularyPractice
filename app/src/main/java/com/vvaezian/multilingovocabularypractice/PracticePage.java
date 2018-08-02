@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -53,7 +52,7 @@ public class PracticePage extends ActionBar {
                 for (int i = 0; i < rowsCount; i++)
                     ShuffledIndexes.add(i);
                 Collections.shuffle(ShuffledIndexes);
-                Log.d("--- shuffled ---", ShuffledIndexes.toString());
+                //Log.d("--- shuffled ---", ShuffledIndexes.toString());
 
                 TableLayout tl = (TableLayout) findViewById(R.id.LanguageFlagsArea);
                 // to make the items word-wrap

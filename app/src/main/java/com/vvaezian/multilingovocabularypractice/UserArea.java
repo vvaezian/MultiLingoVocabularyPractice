@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -100,7 +99,7 @@ public class UserArea extends ActionBar {
 
         Boolean syncedUp = sp.getBoolean("syncedUp", false);
         if (!syncedUp) {
-            Log.d("out", "Syncing ...");
+            //Log.d("out", "Syncing ...");
             HelperFunctions.syncUp(getApplicationContext());
         }
     }

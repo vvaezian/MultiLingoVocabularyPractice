@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -26,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         for (String lang:allLangs)
             createString.append(", ").append(lang).append(" Text");
         createString.append(", status TINYINT );");
-        Log.d("create query: ", createString.toString());
+        //Log.d("create query: ", createString.toString());
         db.execSQL(createString.toString());
     }
     // TODO: Implement onUpgrade properly

@@ -7,7 +7,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -67,7 +66,7 @@ public class EditTablePage extends ActionBar {
 
             @Override
             public void onFailure(@NonNull Call<GoogleTranslateAPIResponse> call, @NonNull Throwable t) {
-                Log.d("out","fail");
+                //Log.d("out","fail");
             }
         });
     }

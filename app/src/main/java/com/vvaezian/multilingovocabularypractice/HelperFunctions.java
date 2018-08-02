@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class HelperFunctions  {
@@ -133,7 +131,7 @@ public class HelperFunctions  {
                     JSONObject jsonResponse = new JSONObject(response);
                     final boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        Log.d(" ----- sync ----", "success");
+                        //Log.d(" ----- sync ----", "success");
                         // setting status in local database to 1
                         userDB.cleanData();
                         // writing in SharedPreferences that syncedUp was successful
@@ -141,7 +139,7 @@ public class HelperFunctions  {
                         prefEditor.putBoolean("syncedUp", true);
                         prefEditor.apply();
                     } else {
-                        Log.d(" ----- sync ----", "failed");
+                        //Log.d(" ----- sync ----", "failed");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -196,7 +194,7 @@ public class HelperFunctions  {
                     JSONObject jsonObj;
                     boolean flag = true; // to check if all rows inserted successfully
 
-                    Log.d("------ syncDown ------", "Starting to process data");
+                    //Log.d("------ syncDown ------", "Starting to process data");
 
                     for (int i=0; i < jsonResponse.length(); i++){
                         jsonObj = jsonResponse.getJSONObject(i);
@@ -204,11 +202,11 @@ public class HelperFunctions  {
                         for (int j=0; j < allLangs.length; j++){
                             translations[j] = jsonObj.getString(allLangs[j]);
                         }
-                        Log.d(" ----- syncDown ----", Arrays.toString(translations));
+                        //Log.d(" ----- syncDown ----", Arrays.toString(translations));
                         String sourceWord = jsonObj.getString("source");
                         boolean isInserted = userDB.insertData(sourceWord, allLangs, translations, 1);
                         if (isInserted)
-                            Log.d(" ----- syncDown ----", "inserted");
+                            ;//Log.d(" ----- syncDown ----", "inserted");
                         else
                             flag = false;
                     }
@@ -248,8 +246,8 @@ public class HelperFunctions  {
             else
                 texts.put(cursor.getColumnName(i), "Not Defined");
         }
-        Log.d("--- texts keys ---", texts.keySet().toString());
-        Log.d("--- texts values ---", texts.values().toString());
+        //Log.d("--- texts keys ---", texts.keySet().toString());
+        //Log.d("--- texts values ---", texts.values().toString());
 
         // programmatically create fields to hold flags and translations
 
