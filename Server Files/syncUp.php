@@ -7,7 +7,7 @@ $username = "id3423136_301232792";
 $password = ***;
 $dbname = "id3423136_multilingo";
 
-$allLangsString = "fr de es it en";
+$allLangsString = "fr de es it en ar ch tw nl hi fa pt ru ja tr sv";
 $allLangs = explode(" ", $allLangsString);
 
 $user = $_POST["username"];
