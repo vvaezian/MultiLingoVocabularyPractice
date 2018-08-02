@@ -4,7 +4,9 @@
     
     $username = $_POST["username"];
     $password = $_POST["password"];
-     function registerUser() {
+    $response = array();
+    
+    function registerUser() {
         global $con, $username, $password;
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         $statement = mysqli_prepare($con, "INSERT INTO Users (username, password) VALUES (?, ?)");
@@ -26,12 +28,22 @@
             return false; 
         }
     }
-    $response = array();
-    $response["success"] = false;  
-    if (usernameAvailable()){
-        registerUser();
-        $response["success"] = true;  
-    }
     
-    echo json_encode($response);
+    $response["success"] = false;  
+    $response["available"] = true; 
+    
+    if ($username == '') {
+        echo json_encode($response);
+    }
+    else {
+        if (usernameAvailable()){
+            registerUser();
+            $response["success"] = true;  
+        }
+        else{
+            $response["available"]=false;
+        }
+        
+        echo json_encode($response);
+    }
 ?>
