@@ -45,7 +45,7 @@ public class UserArea extends ActionBar {
                 langStats.append(", ");
             }
             langStats.deleteCharAt(langStats.length() - 2);
-            tvLangsStats.setText("Chosen Languages for Practice: \n" + langStats.toString());
+            tvLangsStats.setText(Html.fromHtml("Chosen Languages for Practice: <br>" + "<font color=blue>" + langStats.toString() + "</font>"));
         }
 
         TextView wordsStats = (TextView) findViewById(R.id.tvWordsStats);
@@ -58,7 +58,7 @@ public class UserArea extends ActionBar {
             wordsStats.setText("You have 1 record in your database");
         }
         else {
-            wordsStats.setText("You have " + rowCounts + " records in your database");
+            wordsStats.setText(Html.fromHtml("You have " + "<font color=blue>" + rowCounts + "</font>" + " records in your database"));
         }
 
         ConstraintLayout CLgoToPracticePageArea = findViewById(R.id.CLgoToPracticePageArea);
