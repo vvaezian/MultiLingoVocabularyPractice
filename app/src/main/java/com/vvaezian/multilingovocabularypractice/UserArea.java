@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,7 +91,7 @@ public class UserArea extends ActionBar {
             wordsStats.setText(R.string.You_have_1_record_in_your_database);
         }
         else {
-            wordsStats.setText("You have " + rowCounts + " records in your database");
+            wordsStats.setText(Html.fromHtml("You have " + "<font color=blue>" + rowCounts + "</font>" + " records in your database"));
         }
 
         // Don't show button for going to practice page if no languages selected or words added
