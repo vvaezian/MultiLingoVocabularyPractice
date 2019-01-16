@@ -6,11 +6,13 @@ Let's say a user is learning French and German. When s/he logs in, app randomely
 
 The user can add or delete words to/from the database.
 
-## To-Do
-- password reset
-- flag for source lang
-- Pronunciation
-- Google/FB sign-in
-- Lower/upper case r treated as two words
-- fill out the database (if user add a language, the previously added words should be translated in the new language)
+#### To-Do
+- Add button for Pronunciation
+- Password Reset
+- Add flag for source language
+- Google/FB Sign-in
+- Fill out the empty values in the database (if user adds a language, the previously added words should be translated in the new language)
 - Move files to another server
+
+#### Bugs to Fix
+- Lower/upper case words are treated as two words
