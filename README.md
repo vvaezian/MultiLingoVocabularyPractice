@@ -8,8 +8,8 @@ The user can add or delete words to/from the database.
 
 #### To-Do
 - [x] Add button for Pronunciation
-- [] Password Reset
-- [] Google/FB Sign-in
+- [ ] Password Reset
+- [ ] Google/FB Sign-in
 - Import user's languages and words from DuoLingo
 - Fill out the empty values in the database (if user adds a language, the previously added words should be translated in the new language)
 - Move files to another server
