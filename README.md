@@ -10,11 +10,11 @@ The user can add or delete words to/from the database.
 - [x] Add button for Pronunciation
 - [ ] Password Reset
 - [ ] Google/FB Sign-in
-- Import user's languages and words from DuoLingo
-- Fill out the empty values in the database (if user adds a language, the previously added words should be translated in the new language)
-- Move files to another server
-- Add flag for source language
+- [ ] Import user's languages and words from DuoLingo
+- [ ] Fill out the empty values in the database (if user adds a language, the previously added words should be translated in the new language)
+- [ ] Move files to another server
+- [ ] Add flag for source language
 
 #### Bugs to Fix
-- Lower/upper case words are treated as two words
-- Specifying the source language when translating sometimes causes a crash
+- [ ] Lower/upper case words are treated as two words
+- [ ] Specifying the source language when translating sometimes causes a crash
