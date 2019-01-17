@@ -42,7 +42,7 @@ public class EditTablePage extends ActionBar {
         String apiKey = BuildConfig.ApiKey;
         //using Retrofit to send a request to Google-Translate-API and receive the response
         Call<GoogleTranslateAPIResponse> call = apiInterface.translateWord(
-                query, source, target, apiKey);
+                query.toLowerCase(), source, target, apiKey);
         call.enqueue(new Callback<GoogleTranslateAPIResponse>() {
             @Override
             public void onResponse(@NonNull Call<GoogleTranslateAPIResponse> call, @NonNull Response<GoogleTranslateAPIResponse> response) {
@@ -188,7 +188,8 @@ public class EditTablePage extends ActionBar {
                             targetLang = langs[i];
                     }
 
-                    translateWord(inputWords, sourceLang, targetLang, tv);
+                    if (sourceLang.equals(targetLang)) tv.setText(inputWords);
+                    else translateWord(inputWords, sourceLang, targetLang, tv);
                 }
                 loadingSpinner.setVisibility(View.GONE);
             }
@@ -236,7 +237,7 @@ public class EditTablePage extends ActionBar {
                     }
 
                     else {
-                        boolean isInserted = userDB.insertData(sourceWord, langs, translations, 0);
+                        boolean isInserted = userDB.insertData(sourceWord.toLowerCase(), langs, translations, 0);
                         if (isInserted) {
                             etInput.setText("");
                             // making a toast
