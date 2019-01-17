@@ -16,5 +16,5 @@ The user can add or delete words to/from the database.
 - [ ] Add flag for source language
 
 #### Bugs to Fix
-- [ ] Lower/upper case words are treated as two words
+- [x] Lower/upper case words are treated as two words
 - [ ] Specifying the source language when translating sometimes causes a crash
