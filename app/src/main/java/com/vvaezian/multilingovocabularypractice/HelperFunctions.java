@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,8 +24,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class HelperFunctions  {
+    private static TextToSpeech tts;
 
     public static String abbreviate(String langName){
         String output = "";
@@ -275,9 +279,11 @@ public class HelperFunctions  {
         TableRow[] rows = new TableRow[langs.length];
         final TextView[] buttons = new TextView[langs.length];
 
+
         for (int i=0; i < langs.length; i++){
 
             final String langsElement = langs[i];  // the language at index i.
+            final String flagText = texts.get(langsElement).toString();
 
             // Create a new row to be added.
             rows[i] = new TableRow(context);
@@ -301,7 +307,8 @@ public class HelperFunctions  {
                     int resID = context.getResources().getIdentifier(langsElement + "_transparent" , "drawable", context.getPackageName());
                     button.setBackgroundResource(resID);
 
-                    button.setText(texts.get(langsElement).toString());
+
+                    button.setText(flagText);
                     button.setTextColor(Color.BLACK);
                     button.setTextSize(fontSize);
                     button.setTransformationMethod(null); // preventing all caps
@@ -309,12 +316,40 @@ public class HelperFunctions  {
                 }
             });
 
-            // Add the button to row.
+
+            // Add flag button to row.
             rows[i].addView(buttons[i]);
+
+            // add pronounciation button to row
+            ImageView iv = new ImageView(context);
+            int id = context.getResources().getIdentifier("play", "drawable", context.getPackageName());
+            iv.setImageResource(id);
+            rows[i].addView(iv);
+
+            tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                }
+            });
+
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Locale loc = new Locale(langsElement);
+                    tts.setLanguage(loc);
+                    Toast.makeText(context, "test", Toast.LENGTH_SHORT).show();
+                    tts.speak(flagText, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
+            //</Add Pronunciation Button>
 
             // Add the row to TableLayout.
             tl.addView(rows[i], params);
         }
+    }
+
+    public static void Pronounce(String strToSpeak, final Context context){
+
     }
 
     //TODO: turn toast-making to a function like this
