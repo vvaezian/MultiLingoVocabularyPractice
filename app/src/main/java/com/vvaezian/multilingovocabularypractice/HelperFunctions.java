@@ -83,9 +83,9 @@ public class HelperFunctions  {
                 break;
             case "ar": output = "Arabic";
                 break;
-            case "ch": output = "Chinese (Simplified)";
+            case "ch": output = "Chinese (Simplified)"; //zh-Hans
                 break;
-            case "tw": output = "Chinese (Traditional)";
+            case "tw": output = "Chinese (Traditional)"; // zh-Hant
                 break;
             case "nl": output = "Dutch";
                 break;
@@ -283,6 +283,12 @@ public class HelperFunctions  {
         for (int i=0; i < langs.length; i++){
 
             final String langsElement = langs[i];  // the language at index i.
+            final String language;
+
+            if (langsElement.equals("ch")) language = "zh-Hans";
+            else if (langsElement.equals("tw")) language = "zh-Hant";
+            else language = langsElement;
+
             final String flagText = texts.get(langsElement).toString();
 
             // Create a new row to be added.
@@ -307,7 +313,6 @@ public class HelperFunctions  {
                     int resID = context.getResources().getIdentifier(langsElement + "_transparent" , "drawable", context.getPackageName());
                     button.setBackgroundResource(resID);
 
-
                     button.setText(flagText);
                     button.setTextColor(Color.BLACK);
                     button.setTextSize(fontSize);
@@ -324,6 +329,9 @@ public class HelperFunctions  {
             ImageView iv = new ImageView(context);
             int id = context.getResources().getIdentifier("play", "drawable", context.getPackageName());
             iv.setImageResource(id);
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+            lp.gravity = Gravity.CENTER_VERTICAL;
+            iv.setLayoutParams(lp);
             rows[i].addView(iv);
 
             tts = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
@@ -335,13 +343,16 @@ public class HelperFunctions  {
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Locale loc = new Locale(langsElement);
+                    Locale loc = new Locale(language);
                     tts.setLanguage(loc);
-                    Toast.makeText(context, "test", Toast.LENGTH_SHORT).show();
-                    tts.speak(flagText, TextToSpeech.QUEUE_FLUSH, null);
+                    //Toast.makeText(context, "test", Toast.LENGTH_SHORT).show();
+                    if (!flagText.equals("Not Defined")) {
+                        tts.speak(flagText, TextToSpeech.QUEUE_FLUSH, null);
+                    }
+
                 }
             });
-            //</Add Pronunciation Button>
+            //</Add pronunciation button>
 
             // Add the row to TableLayout.
             tl.addView(rows[i], params);
