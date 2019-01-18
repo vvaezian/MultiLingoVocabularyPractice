@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class HelperFunctions  {
-    private static TextToSpeech tts;
 
     public static String abbreviate(String langName){
         String output = "";
@@ -232,6 +231,7 @@ public class HelperFunctions  {
         queue.add(syncDownRequest);
     }
 
+    private static TextToSpeech tts;
     public static void Populate(ArrayList<Integer> ShuffledIndexes, Cursor cursor, TableLayout tl, final Context context){
 
         final int fontSize = 30;
@@ -343,13 +343,16 @@ public class HelperFunctions  {
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Locale loc = new Locale(language);
-                    tts.setLanguage(loc);
-                    //Toast.makeText(context, "test", Toast.LENGTH_SHORT).show();
-                    if (!flagText.equals("Not Defined")) {
-                        tts.speak(flagText, TextToSpeech.QUEUE_FLUSH, null);
+                    if (language.equals("ar")) Toast.makeText(context, "Arabic Text-to-Speech is not supported by Google yet!", Toast.LENGTH_SHORT).show();
+                    else if (language.equals("fa")) Toast.makeText(context, "Persian Text-to-Speech is not supported by Google yet!", Toast.LENGTH_SHORT).show();
+                    else {
+                        Locale loc = new Locale(language);
+                        tts.setLanguage(loc);
+                        //Toast.makeText(context, "test", Toast.LENGTH_SHORT).show();
+                        if (!flagText.equals("Not Defined")) {
+                            tts.speak(flagText, TextToSpeech.QUEUE_FLUSH, null);
+                        }
                     }
-
                 }
             });
             //</Add pronunciation button>
@@ -357,10 +360,6 @@ public class HelperFunctions  {
             // Add the row to TableLayout.
             tl.addView(rows[i], params);
         }
-    }
-
-    public static void Pronounce(String strToSpeak, final Context context){
-
     }
 
     //TODO: turn toast-making to a function like this
@@ -373,7 +372,7 @@ public class HelperFunctions  {
         mToast.show();
     }
 
-    //TODO access sharedPrefs and DatabaseHelper outside onCreate using this type of function to avoid repititive calls to them
+    //TODO access sharedPrefs and DatabaseHelper outside onCreate using this type of function to avoid repetitive calls to them
     public static SharedPreferences getPref(Context Context){
         return PreferenceManager.getDefaultSharedPreferences(Context);
     }

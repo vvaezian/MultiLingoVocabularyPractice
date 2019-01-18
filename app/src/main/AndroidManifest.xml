@@ -6,6 +6,8 @@
 
     <application
         android:name="android.support.multidex.MultiDexApplication"
+        android:versionCode="3"
+        android:versionName="1.1"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_lang"
         android:label="@string/app_name"

@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     DatabaseHelper(final Context context, final String dbName) {
         // for explanation of the extra argument `dbName` see getDataBaseHelper method in HelperFunctions java file
-        super(context, dbName, null, 1);
+        super(context, dbName, null, 2);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // this is used in HelperFunction as well. If you wanted to change this, make sure to do the same change there as well.
         final String[] allLangs = {"fr", "de", "es", "it", "en", "ar", "ch", "tw", "nl", "hi", "fa", "pt", "ru", "ja", "tr", "sv"};
 
-        StringBuilder createString = new StringBuilder("CREATE TABLE " + TABLE_NAME + " (source TEXT PRIMARY KEY");
+        StringBuilder createString = new StringBuilder("CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (source TEXT PRIMARY KEY");
         for (String lang:allLangs)
             createString.append(", ").append(lang).append(" Text");
         createString.append(", status TINYINT );");
@@ -31,10 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // TODO: Implement onUpgrade properly
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        final String TABLE_NAME = "WordsTable";
-
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        //Log.d("----- test ---- ", "onUpgrade triggered!");
         onCreate(db);
     }
 
