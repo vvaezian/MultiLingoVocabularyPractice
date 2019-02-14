@@ -1,6 +1,6 @@
 # MultiLingoVocabularyPractice
 
-**Available on [Goolge Play](https://play.google.com/store/apps/details?id=com.vvaezian.multilingovocabularypractice)**
+###**Available on [Goolge Play](https://play.google.com/store/apps/details?id=com.vvaezian.multilingovocabularypractice)**
 
 This is an android app designed for people who are learning different languages. 
 
