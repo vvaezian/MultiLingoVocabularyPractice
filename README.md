@@ -1,4 +1,4 @@
-# MultiLingoVocabularyPractice
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://github.com/vvaezian/MultiLingoVocabularyPractice)
 
 ### **Available on [Goolge Play](https://play.google.com/store/apps/details?id=com.vvaezian.multilingovocabularypractice)**
 
